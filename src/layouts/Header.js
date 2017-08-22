@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Navbar,Nav,NavItem } from 'react-bootstrap';
+import { withRouter,Link } from 'react-router-dom';
+import { Navbar,Nav} from 'react-bootstrap';
+import RouteNavItem from '../components/RouteNavItem';
 import Routes from '../Routes';
 import './Header.css';
 
@@ -20,10 +21,9 @@ class Header extends Component{
       </Navbar.Header>
       <Navbar.Collapse>
           <Nav pullRight>
-            <NavItem onClick={this.handleNavLink.bind(this)} href="/home">Home</NavItem>
-            <NavItem onClick={this.handleNavLink.bind(this)} href="/about">About</NavItem>
-            <NavItem onClick={this.handleNavLink.bind(this)} href="/services">Services</NavItem>
-            <NavItem onClick={this.handleNavLink.bind(this)} href="/contact">Contact</NavItem>
+            <RouteNavItem onClick={this.handleNavLink.bind(this)} href="/home">Home</RouteNavItem>
+            <RouteNavItem onClick={this.handleNavLink.bind(this)} href="/about">About</RouteNavItem>
+            <RouteNavItem onClick={this.handleNavLink.bind(this)} href="/contact">Contact</RouteNavItem>
           </Nav>
         </Navbar.Collapse>
     </Navbar>
@@ -31,5 +31,5 @@ class Header extends Component{
   };
 }
 
-export default Header;
-//export default withRouter(Header);
+//export default Header;
+export default withRouter(Header);
