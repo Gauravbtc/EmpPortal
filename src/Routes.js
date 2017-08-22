@@ -8,7 +8,7 @@ import Contact from './containers/Contact';
 
 export default () => (
   <Switch>
-    <Route path= "/home" exact component={Home} />
+    <Route path= "/" exact component={Home} />
     <Route path= "/contact" exact component={Contact} />
     <Route path= "/about" exact component={About} />
     <Route component={NotFound} />
