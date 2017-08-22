@@ -1,0 +1,15 @@
+.navbar-default{
+  background-color: #2e8682;
+}
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav li a {
+    color: #d7f3ca;
+    transition: all ease-in 0.2s;
+}
+.navbar-default .navbar-nav li a:hover {
+    color: #555;
+    background-color: #d7f3ca;
+}
