@@ -4,6 +4,7 @@ import Home from './containers/Home';
 import NotFound from './containers/NotFound';
 import About from './containers/About';
 import Contact from './containers/Contact';
+import Employees from './containers/Employee/Employees';
 
 
 export default () => (
@@ -11,6 +12,7 @@ export default () => (
     <Route path= "/" exact component={Home} />
     <Route path= "/contact" exact component={Contact} />
     <Route path= "/about" exact component={About} />
+    <Route path="/employee" exact component={Employees} />
     <Route component={NotFound} />
   </Switch>
 );
