@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import './Employee.css'
+import { Link } from 'react-router-dom';
+import FontAwesome from 'react-fontawesome';
 
 class Employees extends Component{
   constructor(props){
 		super(props);    // console.log(employees);
 	}
+
 
   render(){
     const emps = employees.map((emp,i) =>
@@ -11,21 +15,31 @@ class Employees extends Component{
 		 );
     return(
       <div>
-        <div className="table-responsive">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Age</th>
-                <th>City</th>
-              </tr>
-            </thead>
-            <tbody>
-              {emps}
-            </tbody>
-          </table>
+      <div className="panel panel-default">
+        <div className="panel-heading">Employee Detail
+          <div className='pull-right'>
+            <Link to="/emp_new" className="btn btn-primary">Employee</Link>
+          </div>
+        </div>
+        <div className="panel-body">
+          <div className="table-responsive">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Age</th>
+                  <th>City</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {emps}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     );
@@ -46,6 +60,11 @@ class Employee extends Component{
         <td>{this.props.lastname}</td>
         <td>{this.props.age}</td>
         <td>{this.props.city}</td>
+        <td>
+          <FontAwesome name='eye' className="btn btn-sm btn-default"  />
+          <FontAwesome name='pencil'className="btn btn-sm btn-primary"  />
+          <FontAwesome name='trash'className="btn btn-sm btn-danger" />
+        </td>
       </tr>
     );
   }

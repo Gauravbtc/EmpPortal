@@ -1,0 +1,6 @@
+@media all and (min-width: 480px) {
+  .NewEmployee form {
+    margin: 10 auto;
+    max-width: 420px;
+  }
+}
