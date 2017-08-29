@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import employee from './employee/employee'
+import employee from './employee'
 
 const rootReducer = combineReducers({
   employee
