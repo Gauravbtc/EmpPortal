@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './NewEmployee.css';
+import '../../css/NewEmployee.css';
 import { FormGroup,FormControl,ControlLabel,Button,Radio} from 'react-bootstrap';
 import { createStore } from 'redux';
-import { addEmp } from '../../actions/employee';
+import { addEmp } from '../../actions/employee_action';
 import  employee  from '../../reducers/employee';
 import { withRouter } from 'react-router-dom';
 class NewEmployee extends Component{
@@ -136,7 +136,6 @@ class NewEmployee extends Component{
                       type="email" />
                       <span style={{color: "red"}}>{this.state.errors["email"]}</span>
                   </FormGroup>
-
                   <Button type="submit" value="Submit"  bsStyle="primary">Submit</Button>
                 </form>
               </div>

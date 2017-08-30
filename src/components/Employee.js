@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Employee.css'
+import '../css/Employee.css'
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 
@@ -18,7 +18,7 @@ class Employee extends Component{
       <div className="panel panel-default">
         <div className="panel-heading">Employee Detail
           <div className='pull-right'>
-            <Link to="/emp_new" className="btn btn-primary">Employee</Link>
+            <Link to="/employee/new" className="btn btn-primary">Employee</Link>
           </div>
         </div>
         <div className="panel-body">
@@ -61,7 +61,7 @@ class EmployeeBody extends Component{
         <td>{this.props.age}</td>
         <td>{this.props.city}</td>
         <td>
-          <FontAwesome name='eye' className="btn btn-sm btn-default"  />
+          <Link to={`/employee/show/${this.props.id}`}><FontAwesome name='eye' className="btn btn-sm btn-default"/></Link>
           <FontAwesome name='pencil'className="btn btn-sm btn-primary"  />
           <FontAwesome name='trash'className="btn btn-sm btn-danger" />
         </td>

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { withRouter,Link } from 'react-router-dom';
 import { Navbar,Nav} from 'react-bootstrap';
 import RouteNavItem from '../components/RouteNavItem';
-import Routes from '../Routes';
-import './Header.css';
+import Routes from '../Routes/Routes';
+import '../css/Header.css';
 
 class Header extends Component{
   handleNavLink(event){

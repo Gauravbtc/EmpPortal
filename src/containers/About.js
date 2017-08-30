@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NewEmployee from './Employee/NewEmployee';
 class About extends Component{
   render(){
     return(
