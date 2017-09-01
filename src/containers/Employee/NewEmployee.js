@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import '../../css/NewEmployee.css';
 import { FormGroup,FormControl,ControlLabel,Button,Radio} from 'react-bootstrap';
-import { createStore } from 'redux';
-import { addEmp } from '../../actions/employee_action';
-import  employee  from '../../reducers/employee';
+//import { createStore } from 'redux';
+import { addEmp,defaultEmp } from '../../actions/employee_action';
+//import  employee  from '../../reducers/employee_reducers';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 class NewEmployee extends Component{
   constructor(props) {
@@ -17,6 +19,18 @@ class NewEmployee extends Component{
       errors: {}
      };
   }
+
+  // componentDidMount(){
+  //   this.props.employeeList()
+  // }
+
+  componentWillUnmount()
+    {
+      //console.log("Gaurav Makwana"+ this.props.employee);
+      let params = false;
+      this.props.defaultEmp(params)
+      console.log("Gaurav Makwana"+ this.props.employee);
+    }
 
   handleChange(event){
     this.setState({
@@ -84,14 +98,13 @@ class NewEmployee extends Component{
   handleSubmit(event){
     event.preventDefault();
     if(this.handleValidation()){
-      const store = createStore(employee);
       let params= {firstname: this.state.firstname,lastname: this.state.lastname,email: this.state.email, gender: this.state.gender,status: this.state.status};
-      store.dispatch(addEmp(params));
-      this.setState({status: params.status});
+
+      this.props.addEmp(params)
       this.props.history.push('/employee');
       // console.log(this.state.gender);
-      // // console.log("hh"+params.status);
-      // // console.log("dad"+this.state.gender);
+      // console.log("hh"+params.status);
+      // console.log("dad"+this.state.gender);
       }
   }
   render(){
@@ -146,5 +159,21 @@ class NewEmployee extends Component{
     }
   }
 
+  function mapStateToProps(state){
+    console.log("Hh"+ state.employee)
+    return{
+      employee: state.employee
+    }
+  }
 
-export default withRouter(NewEmployee);
+
+  function matchDispatchToProps(dispatch){
+    return bindActionCreators({
+      addEmp: addEmp,
+      defaultEmp: defaultEmp
+    }, dispatch)
+  }
+
+const newemployee = connect(mapStateToProps, matchDispatchToProps) (NewEmployee)
+//export default withRouter(NewEmployee);
+export default withRouter(newemployee);

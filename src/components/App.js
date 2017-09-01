@@ -6,6 +6,8 @@ import Routes from '../Routes/Routes';
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
 
+
+
 class App extends Component {
   render() {
   return (

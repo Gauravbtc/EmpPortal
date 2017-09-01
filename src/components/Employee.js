@@ -2,16 +2,39 @@ import React, { Component } from 'react';
 import '../css/Employee.css'
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
+import { employeeList,fetchEmployees,fetchEmployeesSuccess,fetchEmployeesFailure } from '../actions/employee_action';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+
 
 class Employee extends Component{
   constructor(props){
 		super(props);    // console.log(employees);
 	}
 
+  componentDidMount(){
+    this.props.fetchEmployees()
+    //this.props.employeeList()
+  }
+
+
+
+
+
+  // createEmployeeList(){
+  //   return this.props.employee.map((emp) =>{
+  //     return(
+  //       <li key={emp.id}> {emp.firstname} {emp.lastname} />
+  //       </li>
+  //     )
+  //   });
+  // }
 
   render(){
-    const emps = employees.map((emp,i) =>
-			<EmployeeBody key={i} id= {emp.id } firstname={emp.firstname} lastname={emp.lastname} age={emp.age} city={emp.city} />
+    //console.log("yy"+ this.props.employee);
+    const emps = this.props.employee.map((emp,i) =>
+			<EmployeeBody key={i} id= {emp.id } firstname={emp.firstname} lastname={emp.lastname} gender={emp.gender} email={emp.email} />
 		 );
     return(
       <div>
@@ -29,8 +52,8 @@ class Employee extends Component{
                   <th>#</th>
                   <th>Firstname</th>
                   <th>Lastname</th>
-                  <th>Age</th>
-                  <th>City</th>
+                  <th>Gender</th>
+                  <th>Mail</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -46,11 +69,6 @@ class Employee extends Component{
   }
 }
 
-const employees = [
-  {id: 1, firstname: 'Gaurav', lastname: 'Makwana', age: '23', city: 'Cambay'},
-  {id: 2, firstname: 'Maimit', lastname: 'Patel', age: '25', city: 'Baroda'},
-];
-
 class EmployeeBody extends Component{
   render(){
     return(
@@ -58,8 +76,8 @@ class EmployeeBody extends Component{
         <td>{this.props.id}</td>
         <td>{this.props.firstname}</td>
         <td>{this.props.lastname}</td>
-        <td>{this.props.age}</td>
-        <td>{this.props.city}</td>
+        <td>{this.props.gender}</td>
+        <td>{this.props.email}</td>
         <td>
           <Link to={`/employee/show/${this.props.id}`}><FontAwesome name='eye' className="btn btn-sm btn-default"/></Link>
           <FontAwesome name='pencil'className="btn btn-sm btn-primary"  />
@@ -69,4 +87,32 @@ class EmployeeBody extends Component{
     );
   }
 }
-export default Employee;
+
+
+function mapStateToProps(state){
+  console.log("qq"+state.employee.employeeList.employees)
+  return{
+    employee: state.employee.employeeList.employees
+  }
+}
+
+
+// function matchDispatchToProps(dispatch){
+//   return bindActionCreators({
+//     employeeList: employeeList
+//   }, dispatch)
+// }
+
+function matchDispatchToProps(dispatch){
+  return {
+    fetchEmployees: () => {
+      (dispatch(fetchEmployees()).payload).then((response) => {
+          !response.error ? dispatch(fetchEmployeesSuccess(response.data)) : dispatch(fetchEmployeesFailure(response.data));
+        })
+    }
+  }
+}
+
+
+const employee = connect(mapStateToProps, matchDispatchToProps) (Employee)
+export default employee;

@@ -6,7 +6,7 @@ import About from '../containers/About';
 import Contact from '../containers/Contact';
 import Employee from '../components/Employee';
 import NewEmployee from '../containers/Employee/NewEmployee';
-
+import ShowEmployee from '../containers/Employee/ShowEmployee';
 
 export default () => (
   <Switch>
@@ -15,7 +15,7 @@ export default () => (
     <Route path= "/about" exact component={About} />
     <Route path="/employee" exact component={Employee} />
     <Route path ="/employee/new" exact component={NewEmployee} />
-    <Route path ="/employee/show/" />
+    <Route path ="/employee/show/:id"  exact component ={ShowEmployee}/>
     <Route component={NotFound} />
   </Switch>
 );
