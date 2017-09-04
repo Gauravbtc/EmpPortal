@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+export function hello(){
+  console.log("call hello function")
+}
+
 export const addEmp = (params) =>{
   console.log("action"+ params)
   return {
@@ -40,7 +44,6 @@ export const defaultEmp = (payload) =>{
       url: `http://localhost:3005/v1/users`,
       headers: []
     });
-    console.log(request);
     return {
       type: "FETCH_EMPLOYEES",
       payload: request
