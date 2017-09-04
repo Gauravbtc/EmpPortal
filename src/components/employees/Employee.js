@@ -1,39 +1,22 @@
 import React, { Component } from 'react';
-import '../css/Employee.css'
+import '../../css/Employee.css'
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
-import { employeeList,fetchEmployees,fetchEmployeesSuccess,fetchEmployeesFailure } from '../actions/employee_action';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-
 
 class Employee extends Component{
-  constructor(props){
-		super(props);    // console.log(employees);
-	}
-
   componentDidMount(){
     this.props.fetchEmployees()
-    //this.props.employeeList()
   }
-
-
-
-
-
-  // createEmployeeList(){
-  //   return this.props.employee.map((emp) =>{
-  //     return(
-  //       <li key={emp.id}> {emp.firstname} {emp.lastname} />
-  //       </li>
-  //     )
-  //   });
-  // }
-
+  
   render(){
-    //console.log("yy"+ this.props.employee);
-    const emps = this.props.employee.map((emp,i) =>
+    const { employees, loading, error } = this.props.employeeList;
+    if(loading) {
+      return <div className="container"><h1>Users</h1><h3>Loading.</h3></div>
+    } else if(error) {
+      return <div className="alert alert-danger">Error: {error.message}</div>
+    }
+
+    const emps = this.props.employees.map((emp,i) =>
 			<EmployeeBody key={i} id= {emp.id } firstname={emp.firstname} lastname={emp.lastname} gender={emp.gender} email={emp.email} />
 		 );
     return(
@@ -55,7 +38,7 @@ class Employee extends Component{
                   <th>Gender</th>
                   <th>Mail</th>
                   <th>Action</th>
-                </tr>
+                </tr>dispatch
               </thead>
               <tbody>
                 {emps}
@@ -88,31 +71,4 @@ class EmployeeBody extends Component{
   }
 }
 
-
-function mapStateToProps(state){
-  console.log("qq"+state.employee.employeeList.employees)
-  return{
-    employee: state.employee.employeeList.employees
-  }
-}
-
-
-// function matchDispatchToProps(dispatch){
-//   return bindActionCreators({
-//     employeeList: employeeList
-//   }, dispatch)
-// }
-
-function matchDispatchToProps(dispatch){
-  return {
-    fetchEmployees: () => {
-      (dispatch(fetchEmployees()).payload).then((response) => {
-          !response.error ? dispatch(fetchEmployeesSuccess(response.data)) : dispatch(fetchEmployeesFailure(response.data));
-        })
-    }
-  }
-}
-
-
-const employee = connect(mapStateToProps, matchDispatchToProps) (Employee)
-export default employee;
+export default Employee;

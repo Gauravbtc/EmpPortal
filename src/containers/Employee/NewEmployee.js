@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../css/NewEmployee.css';
 import { FormGroup,FormControl,ControlLabel,Button,Radio} from 'react-bootstrap';
 //import { createStore } from 'redux';
-import { addEmp,defaultEmp } from '../../actions/employee_action';
+//import { addEmp,defaultEmp } from '../../actions/employee_action';
 //import  employee  from '../../reducers/employee_reducers';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
@@ -100,7 +100,7 @@ class NewEmployee extends Component{
     if(this.handleValidation()){
       let params= {firstname: this.state.firstname,lastname: this.state.lastname,email: this.state.email, gender: this.state.gender,status: this.state.status};
 
-      this.props.addEmp(params)
+      //this.props.addEmp(params)
       this.props.history.push('/employee');
       // console.log(this.state.gender);
       // console.log("hh"+params.status);
@@ -159,21 +159,21 @@ class NewEmployee extends Component{
     }
   }
 
-  function mapStateToProps(state){
-    console.log("Hh"+ state.employee)
-    return{
-      employee: state.employee
-    }
-  }
+  // function mapStateToProps(state){
+  //   console.log("Hh"+ state.employee)
+  //   return{
+  //     employee: state.employee
+  //   }
+  // }
 
 
-  function matchDispatchToProps(dispatch){
-    return bindActionCreators({
-      addEmp: addEmp,
-      defaultEmp: defaultEmp
-    }, dispatch)
-  }
+  // function matchDispatchToProps(dispatch){
+  //   return bindActionCreators({
+  //     addEmp: addEmp,
+  //     defaultEmp: defaultEmp
+  //   }, dispatch)
+  // }
 
-const newemployee = connect(mapStateToProps, matchDispatchToProps) (NewEmployee)
+//const newemployee = connect(mapStateToProps, matchDispatchToProps) (NewEmployee)
 //export default withRouter(NewEmployee);
-export default withRouter(newemployee);
+export default withRouter(NewEmployee);

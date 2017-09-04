@@ -1,34 +1,10 @@
-// const initialState = {
-//   employeelist: []
-// }
-
-
 const INITIAL_STATE = { employeeList: {employees: [], error:null, loading: false},
 							newEmployee: {employee:null, error: null, loading: false},
-              showEmployee: {employee: null,error: null,loading: false}
-							// activeUser:{emplo:null, error:null, loading: false},
-							// deletedUser: {user: null, error:null, loading: false},
 						};
-
 
 const employee = (state = INITIAL_STATE, action) => {
     let error;
   switch (action.type) {
-    case 'ADD_EMP':
-        alert("kk"+ action.params.firstname);
-        return action.params
-        break;
-    case 'EDIT_EMP':
-        alert("Emp edit");
-        break;
-    case 'EMPLOYEE_LIST':
-        return action.payload;
-        //console.log(JSON.stringify(obj2))
-         break;
-    case 'DEFAULT_EMP' :
-        return action.payload;
-        break;
-
     case "FETCH_EMPLOYEES":
         return {...state, employeeList: { employees: [], error: null, loading: true}}
     case "FETCH_EMPLOYEES_SUCCESS":
@@ -49,8 +25,7 @@ const employee = (state = INITIAL_STATE, action) => {
 
     default:
       return state
-}
+		}
 }
 
-
-export default employee
+export default employee;
