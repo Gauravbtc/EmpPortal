@@ -1,4 +1,4 @@
-import EmployeeForm from '../../components/employees/EmployeeForm';
+import NewEmployee from '../../components/employees/NewEmployee';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Redirect } from 'react-router';
@@ -29,4 +29,4 @@ function matchDispatchToProps(dispatch){
     },
   }
 }
-export default withRouter(connect(mapStateToProps,matchDispatchToProps)(EmployeeForm));
+export default withRouter(connect(mapStateToProps,matchDispatchToProps)(NewEmployee));
