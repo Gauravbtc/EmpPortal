@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import EmployeeContainer from '../containers/employeesContainer/EmployeeContainer';
+import EmployeeContainer from '../../containers/employeesContainer/EmployeeContainer';
 
 class EmployeeIndex extends Component{
 

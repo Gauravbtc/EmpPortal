@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome';
 
 class Employee extends Component{
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.fetchEmployees()
   }
   createEmployees(employees){
@@ -18,7 +18,7 @@ class Employee extends Component{
   render(){
     const { employees, loading, error } = this.props.employeeList;
     if(loading) {
-      return <div className="container"><h1>Users</h1><h3>Loading...</h3></div>
+      return <div className="container"><h1>Employees</h1><h3>Loading...</h3></div>
     } else if(error) {
       return <div className="alert alert-danger">Error: {error.message}</div>
     }
@@ -65,6 +65,7 @@ class EmployeeBody extends Component{
         <td>{this.props.gender}</td>
         <td>{this.props.email}</td>
         <td>
+          <Link to={`/employee/show/${this.props.id}`}><FontAwesome name='eye'className="btn btn-sm btn-primary" /></Link>
           <FontAwesome name='pencil'className="btn btn-sm btn-primary"  />
           <FontAwesome name='trash'className="btn btn-sm btn-danger" />
         </td>
@@ -72,5 +73,4 @@ class EmployeeBody extends Component{
     );
   }
 }
-
- export default Employee;
+export default Employee;

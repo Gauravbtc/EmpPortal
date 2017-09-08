@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import rootReducer from './reducers/index_reducers';
 import { composeWithDevTools} from 'redux-devtools-extension';
 
+
 const store = createStore(
   rootReducer,
   composeWithDevTools(

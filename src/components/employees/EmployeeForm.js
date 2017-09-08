@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import '../../css/NewEmployee.css';
 import { FormGroup,FormControl,ControlLabel,Button,Radio} from 'react-bootstrap';
-//import { createStore } from 'redux';
-import { addEmp,defaultEmp } from '../../actions/employee_action';
-//import  employee  from '../../reducers/employee_reducers';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom';
-class NewEmployee extends Component{
+
+
+class EmployeeForm extends Component{
   constructor(props) {
     super(props);
      this.state = {
@@ -20,18 +16,6 @@ class NewEmployee extends Component{
      };
   }
 
-  // componentDidMount(){
-  //   this.props.employeeList()
-  // }
-
-  componentWillUnmount()
-    {
-      //console.log("Gaurav Makwana"+ this.props.employee);
-      let params = false;
-      this.props.defaultEmp(params)
-      console.log("Gaurav Makwana"+ this.props.employee);
-    }
-
   handleChange(event){
     this.setState({
       [event.target.name]: event.target.value
@@ -41,7 +25,6 @@ class NewEmployee extends Component{
   handleValidation(){
     let errors = {};
     let formIsValid = true;
-    //first name validation
     if(!this.state.firstname){
       console.log(!this.state.firtname);
         formIsValid = false;
@@ -99,15 +82,25 @@ class NewEmployee extends Component{
     event.preventDefault();
     if(this.handleValidation()){
       let params= {firstname: this.state.firstname,lastname: this.state.lastname,email: this.state.email, gender: this.state.gender,status: this.state.status};
-
-      this.props.addEmp(params)
-      this.props.history.push('/employee');
-      // console.log(this.state.gender);
-      // console.log("hh"+params.status);
-      // console.log("dad"+this.state.gender);
+      this.props.createEmployee(params);
       }
   }
+
+
   render(){
+    //console.log(JSON.stringify(this.props.newEmployee))
+    const { employee, loading, error,success} = this.props.newEmployee;
+    if(loading) {
+      return <div className="container"><h1>Employees</h1><h3>Loading...</h3></div>
+    } else if(error) {
+      return <div className="alert alert-danger">Error: {error.message}</div>
+    }else if(success) {
+      //  return {employee.success? {this.props.history.push("/employee")} : {this.props.history.push("/employee/new")} }
+          {this.props.history.push("/employee")}
+      //return <div>{this.props.history.push("/employee")}</div>
+    }
+
+    //console.log("hhh"+ JSON.stringify(employee));
     return(
       <div>
         <div className="panel panel-default">
@@ -159,21 +152,21 @@ class NewEmployee extends Component{
     }
   }
 
-  function mapStateToProps(state){
-    console.log("Hh"+ state.employee)
-    return{
-      employee: state.employee
-    }
-  }
+  // function mapStateToProps(state){
+  //   console.log("Hh"+ state.employee)
+  //   return{
+  //     employee: state.employee
+  //   }
+  // }
+  //
+  //
+  // function matchDispatchToProps(dispatch){
+  //   return bindActionCreators({
+  //     addEmp: addEmp,
+  //     defaultEmp: defaultEmp
+  //   }, dispatch)
+  // }
 
-
-  function matchDispatchToProps(dispatch){
-    return bindActionCreators({
-      addEmp: addEmp,
-      defaultEmp: defaultEmp
-    }, dispatch)
-  }
-
-const newemployee = connect(mapStateToProps, matchDispatchToProps) (NewEmployee)
+//const newemployee = connect(mapStateToProps, matchDispatchToProps) (NewEmployee)
 //export default withRouter(NewEmployee);
-export default withRouter(newemployee);
+export default EmployeeForm;

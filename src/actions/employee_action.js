@@ -66,8 +66,10 @@ export const fetchEmployeesFailure = (err) =>{
   }
 }
 
+//Feeach employee detail
 
-export const fetchEmployee = (id) =>{
+
+export function fetchEmployee(id){
   const request = axios.get(`http://localhost:3005/v1/users/${id}`)
   return {
     type: "FETCH_EMPLOYEE",
@@ -76,20 +78,53 @@ export const fetchEmployee = (id) =>{
 }
 
 
-export const fetchEmployeeSuccess = (employee) =>{
+export function fetchEmployeeSuccess(showemployee){
   return {
       type: "FETCH_EMPLOYEE_SUCCESS",
-      payload: employee
+      payload: showemployee
     }
 }
 
 
-export const fetchEmployeeFailure = (err) =>{
+export function fetchEmployeeFailure(err){
   return {
     type: "FETCH_EMPLOYEE_FAILURE",
     payload: err
   }
 }
+
+
+
+export function createEmployee(params){
+  const request = axios({
+    method: 'post',
+    url: 'http://localhost:3005/v1/users',
+    data: params,
+    headers: []
+  });
+
+  return {
+    type: "CREATE_EMPLOYEE",
+    payload: request
+  }
+}
+
+
+export function createEmployeeSuccess(newemployee){
+  return {
+      type: "CREATE_EMPLOYEE_SUCCESS",
+      payload: newemployee
+    }
+}
+
+export function createEmployeeFailure(err){
+  return {
+      type: "CREATE_EMPLOYEE_FAILURE",
+      payload: err
+    }
+}
+
+
 
 
 
