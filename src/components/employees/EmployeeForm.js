@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../css/NewEmployee.css';
 import { FormGroup,FormControl,ControlLabel,Button,Radio} from 'react-bootstrap';
-
+import { withRouter } from 'react-router-dom';
 
 class EmployeeForm extends Component{
   constructor(props) {
@@ -85,22 +85,21 @@ class EmployeeForm extends Component{
       this.props.createEmployee(params);
       }
   }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.newEmployee.success){
+      this.props.history.push("/employee")
+    }
+  }
 
 
   render(){
     //console.log(JSON.stringify(this.props.newEmployee))
     const { employee, loading, error,success} = this.props.newEmployee;
     if(loading) {
-      return <div className="container"><h1>Employees</h1><h3>Loading...</h3></div>
+      return <div className="container"><h1>Employees</h1><h3>Creating...</h3></div>
     } else if(error) {
       return <div className="alert alert-danger">Error: {error.message}</div>
-    }else if(success) {
-      //  return {employee.success? {this.props.history.push("/employee")} : {this.props.history.push("/employee/new")} }
-          {this.props.history.push("/employee")}
-      //return <div>{this.props.history.push("/employee")}</div>
     }
-
-    //console.log("hhh"+ JSON.stringify(employee));
     return(
       <div>
         <div className="panel panel-default">
@@ -151,22 +150,4 @@ class EmployeeForm extends Component{
     );
     }
   }
-
-  // function mapStateToProps(state){
-  //   console.log("Hh"+ state.employee)
-  //   return{
-  //     employee: state.employee
-  //   }
-  // }
-  //
-  //
-  // function matchDispatchToProps(dispatch){
-  //   return bindActionCreators({
-  //     addEmp: addEmp,
-  //     defaultEmp: defaultEmp
-  //   }, dispatch)
-  // }
-
-//const newemployee = connect(mapStateToProps, matchDispatchToProps) (NewEmployee)
-//export default withRouter(NewEmployee);
 export default EmployeeForm;

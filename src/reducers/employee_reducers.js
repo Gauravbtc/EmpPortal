@@ -1,5 +1,5 @@
 const INITIAL_STATE = { employeeList: {employees: [], error:null, loading: false},
-							newEmployee: {employee:null, error: null, loading: false},
+							newEmployee: {employee:null, error: null, loading: false,success: false},
               showEmployee: {employee: null,error: null,loading: false}
 						};
 
@@ -24,12 +24,12 @@ const employee = (state = INITIAL_STATE, action) => {
 
 
 		case 'CREATE_EMPLOYEE':
-		   return {...state,newEmployee: {...state.newEmployee, error: null, loading: true}}
+		   return {...state,newEmployee: {...state.newEmployee, error: null, loading: true,success: false}}
 		case 'CREATE_EMPLOYEE_SUCCESS':
-			 return {...state,newEmployee: { employee: action.payload,error: null,loading: false, success: true}}
+			 return {...state,newEmployee: { employee: action.payload,error: null,loading: false,success: true}}
 		case 'CREATE_EMPLOYEE_FAILURE':
 			error = action.payload || {message: action.payload.message};
-		 	return {...state, newEmployee: { employee: null ,error: error , loading: false}}
+		 	return {...state, newEmployee: { employee: null ,error: error , loading: false,success: false}}
 
     default:
       return state

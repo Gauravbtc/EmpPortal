@@ -15,6 +15,9 @@ class Employee extends Component{
       )
     })
   }
+  newEmp(){
+    return (<Link to="/employee/new" className="btn btn-primary">Employee</Link>);
+  }
   render(){
     const { employees, loading, error } = this.props.employeeList;
     if(loading) {
@@ -27,7 +30,7 @@ class Employee extends Component{
       <div className="panel panel-default">
         <div className="panel-heading">Employee Detail
           <div className='pull-right'>
-            <Link to="/employee/new" className="btn btn-primary">Employee</Link>
+              {this.newEmp()}
           </div>
         </div>
         <div className="panel-body">
