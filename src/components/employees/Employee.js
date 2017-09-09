@@ -69,7 +69,7 @@ class EmployeeBody extends Component{
         <td>{this.props.email}</td>
         <td>
           <Link to={`/employee/show/${this.props.id}`}><FontAwesome name='eye'className="btn btn-sm btn-primary" /></Link>
-          <FontAwesome name='pencil'className="btn btn-sm btn-primary"  />
+          <Link to={`/employee/${this.props.id}/edit`}><FontAwesome name='pencil'className="btn btn-sm btn-primary"  /></Link>
           <FontAwesome name='trash'className="btn btn-sm btn-danger" />
         </td>
       </tr>
