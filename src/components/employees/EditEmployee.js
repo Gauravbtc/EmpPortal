@@ -6,7 +6,13 @@ class EditEmployee extends Component{
   constructor(props) {
     super(props);
      this.state = {
-       emp: this.props.employee,
+       emp: {
+         firstname: '',
+         lastname: '',
+         email: '',
+         gender: 'male',
+         status: false,
+       },
       errors: {
         firstname: '',
         lastname: '',
@@ -18,9 +24,12 @@ class EditEmployee extends Component{
    this.updateEmployeeState = this.updateEmployeeState.bind(this);
    this.handleValidation = this.handleValidation.bind(this);
   }
+
+
   componentDidMount(){
       this.props.fetchEmployee(this.props.id)
     }
+
 
 
     updateEmployeeState(event){
@@ -98,11 +107,19 @@ class EditEmployee extends Component{
  }
 
 
-  //  componentWillReceiveProps(nextProps) {
-  //    if(nextProps.newEmployee.success){
-  //      this.props.history.push("/employee")
-  //    }
-  //  }
+   componentWillReceiveProps(nextProps) {
+     if (!nextProps.editEmployee.loading)
+     {
+       console.log(JSON.stringify(nextProps.editEmployee));
+       this.setState({emp: nextProps.editEmployee.employee});
+     }
+     //console.log("hh"+ JSON.stringify(nextProps.editEmployee));
+    // console.log(nextProps.employee);
+    //  if(nextProps.newEmployee.success){
+    //    this.props.history.push("/employee")
+    //  }
+   }
+
 
 
   render(){
@@ -116,7 +133,8 @@ class EditEmployee extends Component{
     }
     return(
       <div>
-        <EmployeeForm emp={employee} saveEmployee ={this.saveEmployee} updateEmployeeState={this.updateEmployeeState} setGender= {this.setGender} errors= {this.state.errors} />
+
+        <EmployeeForm emp={this.state.emp} saveEmployee ={this.saveEmployee} updateEmployeeState={this.updateEmployeeState} setGender= {this.setGender} errors= {this.state.errors} />
       </div>
     )
   }

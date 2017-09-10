@@ -5,7 +5,8 @@ import { fetchEmployee, fetchEmployeeSuccess, fetchEmployeeFailure } from '../..
 function mapStateToProps(state, ownProps){
   return{
     editEmployee: state.employees.showEmployee,
-    id: ownProps.employeeId
+    id: ownProps.employeeId,
+    params: state.employees.showEmployee.employee
   }
 }
 
