@@ -1,12 +1,13 @@
 import EditEmployee from '../../components/employees/EditEmployee';
 import { connect } from 'react-redux';
-import { fetchEmployee, fetchEmployeeSuccess, fetchEmployeeFailure } from '../../actions/employee_action';
+import { fetchEmployee, fetchEmployeeSuccess, fetchEmployeeFailure,updateEmployee,updateEmployeeSuccess,updateEmployeeFailure,resetEmployeeUpdate } from '../../actions/employee_action';
 
 function mapStateToProps(state, ownProps){
   return{
     editEmployee: state.employees.showEmployee,
     id: ownProps.employeeId,
-    params: state.employees.showEmployee.employee
+    params: ownProps,
+    updateEmp: state.employees.updateEmp
   }
 }
 
@@ -22,6 +23,21 @@ function matchDispatchToProps(dispatch){
             dispatch(fetchEmployeeSuccess(response.data));
           }
       })
+    },
+    updateEmployee: (params) => {
+      (dispatch(updateEmployee(params)).payload)
+        .then((response) => {
+          if(response && response.status !== 200){
+            dispatch(updateEmployeeFailure(response.data));
+          }
+          else{
+            dispatch(updateEmployeeSuccess(response.data));
+          }
+      })
+    },
+
+    resetMe: () => {
+      dispatch(resetEmployeeUpdate());
     }
   }
 }

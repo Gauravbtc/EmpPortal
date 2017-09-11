@@ -34,8 +34,8 @@ class EmployeeForm extends Component{
                   </FormGroup>
                   <FormGroup controlId="gender">
                     <ControlLabel>Gender</ControlLabel>
-                    <Radio value="male" name="gender" onChange={this.props.setGender} defaultChecked={true} >Male</Radio>
-                    <Radio value="female" name="gender" onChange={this.props.setGender}>Female</Radio>
+                    <Radio value="male" name="gender" onChange={this.props.setGender} defaultChecked={this.props.emp.gender== "male" ? true : false}>Male</Radio>
+                    <Radio value="female" name="gender" onChange={this.props.setGender} defaultChecked={this.props.emp.gender== "female" ? true : false}>Female</Radio>
                   </FormGroup>
                   <FormGroup controlId="email">
                     <ControlLabel>Email</ControlLabel>

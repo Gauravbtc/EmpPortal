@@ -1,6 +1,8 @@
 const INITIAL_STATE = { employeeList: {employees: [], error:null, loading: false},
 							newEmployee: {employee:null, error: null, loading: false,success: false},
-              showEmployee: {employee: null,error: null,loading: false}
+              showEmployee: {employee: null,error: null,loading: false},
+							updateEmp: {employee:null, error: null, loading: false, success: false},
+							deleteEmp: {employee: null,error: null,loading: false,success: false}
 						};
 
 const employee = (state = INITIAL_STATE, action) => {
@@ -31,6 +33,29 @@ const employee = (state = INITIAL_STATE, action) => {
 			error = action.payload || {message: action.payload.message};
 		 	return {...state, newEmployee: { employee: null ,error: error , loading: false,success: false}}
 
+
+		case 'UPDATE_EMPLOYEE':
+		   return {...state,updateEmp: {...state.updateEmployee, error: null, loading: true,success: false}}
+		case 'UPDATE_EMPLOYEE_SUCCESS':
+			 return {...state,updateEmp: { employee: action.payload.user,error: null,loading: false,success: action.payload.success}}
+		case 'UPDATE_EMPLOYEE_FAILURE':
+			error = action.payload || {message: action.payload.error};
+		 	return {...state, updateEmp: { employee: null ,error: error , loading: false,success: false}}
+		case 'RESET_UPADTE_EMPLOYEE':
+			 return {...state,updateEmp: {employee:null, error: null, loading: false, success: false}}
+
+
+		case 'DELETE_EMPLOYEE':
+			return {...state,deleteEmp: {...state.deleteEmp, error: null, loading: true,success: false}}
+		case 'DELETE_EMPLOYEE_SUCCESS':
+			return {...state,deleteEmp: {employee: action.payload.user, error: null, loading: false,success: action.payload.success}}
+		case 'DELETE_EMPLOYEE_FAILURE':
+			error = action.payload || {message: action.payload.error};
+			return {...state, updateEmp: { employee: null ,error: error , loading: false,success: false}}
+		case 'RESET_DELETE_EMPLOYEE':
+			return {employeeList: { employees: action.employees, error: null, loading: false}}
+
+			
     default:
       return state
 		}

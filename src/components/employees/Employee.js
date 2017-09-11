@@ -8,16 +8,32 @@ class Employee extends Component{
   componentWillMount(){
     this.props.fetchEmployees()
   }
+
+  resetMe(){
+    this.props.resetMe();
+  }
   createEmployees(employees){
     return employees.map((emp)=>{
       return(
-        <EmployeeBody key={emp.id} id= {emp.id } firstname={emp.firstname} lastname={emp.lastname} gender={emp.gender} email={emp.email} />
+        <tr key={emp.id}>
+          <td>{emp.id}</td>
+          <td>{emp.firstname}</td>
+          <td>{emp.lastname}</td>
+          <td>{emp.gender}</td>
+          <td>{emp.email}</td>
+          <td>
+            <Link to={`/employee/show/${emp.id}`}><FontAwesome name='eye' className="btn btn-sm btn-primary" /></Link>
+            <Link to={`/employee/${emp.id}/edit`}><FontAwesome name='pencil'className="btn btn-sm btn-primary"/></Link>
+            <FontAwesome name="trash" className="btn btn-sm btn-danger" onClick={this.props.deleteEmployee.bind(this,emp.id, this.props.employeeList.employees)} />
+          </td>
+        </tr>
       )
     })
   }
   newEmp(){
     return (<Link to="/employee/new" className="btn btn-primary">Employee</Link>);
   }
+
   render(){
     const { employees, loading, error } = this.props.employeeList;
     if(loading) {
@@ -68,9 +84,9 @@ class EmployeeBody extends Component{
         <td>{this.props.gender}</td>
         <td>{this.props.email}</td>
         <td>
-          <Link to={`/employee/show/${this.props.id}`}><FontAwesome name='eye'className="btn btn-sm btn-primary" /></Link>
-          <Link to={`/employee/${this.props.id}/edit`}><FontAwesome name='pencil'className="btn btn-sm btn-primary"  /></Link>
-          <FontAwesome name='trash'className="btn btn-sm btn-danger" />
+          <Link to={`/employee/show/${this.props.id}`}><FontAwesome name='eye' className="btn btn-sm btn-primary" /></Link>
+          <Link to={`/employee/${this.props.id}/edit`}><FontAwesome name='pencil'className="btn btn-sm btn-primary"/></Link>
+          <p>{this.props.employees}</p>
         </td>
       </tr>
     );

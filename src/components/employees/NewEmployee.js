@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EmployeeForm from './EmployeeForm';
+
 class NewEmployee extends Component {
   constructor(props) {
     super(props);

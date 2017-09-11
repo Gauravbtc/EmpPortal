@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import EmployeeForm from './EmployeeForm';
+import { withRouter } from 'react-router-dom';
 
 class EditEmployee extends Component{
-
   constructor(props) {
     super(props);
      this.state = {
@@ -10,7 +10,7 @@ class EditEmployee extends Component{
          firstname: '',
          lastname: '',
          email: '',
-         gender: 'male',
+         gender: '',
          status: false,
        },
       errors: {
@@ -25,28 +25,24 @@ class EditEmployee extends Component{
    this.handleValidation = this.handleValidation.bind(this);
   }
 
-
   componentDidMount(){
       this.props.fetchEmployee(this.props.id)
     }
 
-
-
     updateEmployeeState(event){
-    console.log(this.state.employee);
      const field = event.target.name;
      const emp= this.state.emp;
      emp[field] = event.target.value;
      return this.setState({emp: emp});
     }
 
-
-
     setGender(event){
       const emp = this.state.emp;
       const field = event.target.name
       emp[field] = event.target.value;
-      this.setState({emp: emp});
+
+      console.log("kk"+ JSON.stringify(emp[field]));
+      return this.setState({emp: emp});
     }
 
     handleValidation(){
@@ -98,28 +94,26 @@ class EditEmployee extends Component{
         this.setState({errors: errors});
         return formIsValid;
     }
-
     saveEmployee(event) {
      event.preventDefault();
      if(this.handleValidation()){
-     //this.props.createEmployee(this.state.emp)}
+       this.props.updateEmployee(this.state.emp)
    }
  }
 
-
    componentWillReceiveProps(nextProps) {
-     if (!nextProps.editEmployee.loading)
-     {
-       console.log(JSON.stringify(nextProps.editEmployee));
+     if (!nextProps.editEmployee.loading){
        this.setState({emp: nextProps.editEmployee.employee});
      }
-     //console.log("hh"+ JSON.stringify(nextProps.editEmployee));
-    // console.log(nextProps.employee);
-    //  if(nextProps.newEmployee.success){
-    //    this.props.history.push("/employee")
-    //  }
+     if (nextProps.updateEmp.success){
+        console.log("gaurav"+ JSON.stringify(nextProps.updateEmp));
+        this.props.history.push('/employee');
+     }
    }
 
+   componentWillUnmount(){
+    this.props.resetMe();
+  }
 
 
   render(){
@@ -133,12 +127,10 @@ class EditEmployee extends Component{
     }
     return(
       <div>
-
         <EmployeeForm emp={this.state.emp} saveEmployee ={this.saveEmployee} updateEmployeeState={this.updateEmployeeState} setGender= {this.setGender} errors= {this.state.errors} />
       </div>
     )
   }
 }
 
-
-export default EditEmployee;
+export default withRouter(EditEmployee);
