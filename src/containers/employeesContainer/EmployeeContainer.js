@@ -14,7 +14,7 @@ function mapDispatchToProps(dispatch){
     fetchEmployees: () =>{
     (dispatch(fetchEmployees()).payload)
       .then((response) => {
-        !response.error ? dispatch(fetchEmployeesSuccess(response.data)) : dispatch(response.data)
+        !response.error ? dispatch(fetchEmployeesSuccess(response.data)) : dispatch(fetchEmployeesFailure(response.data))
       })
     },
     deleteEmployee: (id,employeeList) => {

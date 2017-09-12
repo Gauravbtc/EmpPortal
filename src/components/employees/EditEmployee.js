@@ -40,8 +40,6 @@ class EditEmployee extends Component{
       const emp = this.state.emp;
       const field = event.target.name
       emp[field] = event.target.value;
-
-      console.log("kk"+ JSON.stringify(emp[field]));
       return this.setState({emp: emp});
     }
 
@@ -85,7 +83,7 @@ class EditEmployee extends Component{
            let lastAtPos = emp.email.lastIndexOf('@');
            let lastDotPos = emp.email.lastIndexOf('.');
 
-           if (!(lastAtPos < lastDotPos && lastAtPos > 0 && emp.email.indexOf('@@') == -1 && lastDotPos > 2 && (emp.email.length - lastDotPos) > 2)) {
+           if (!(lastAtPos < lastDotPos && lastAtPos > 0 && emp.email.indexOf('@@') === -1 && lastDotPos > 2 && (emp.email.length - lastDotPos) > 2)) {
                 formIsValid = false;
                 errors.email = "Email is not valid";
             }
@@ -106,7 +104,6 @@ class EditEmployee extends Component{
        this.setState({emp: nextProps.editEmployee.employee});
      }
      if (nextProps.updateEmp.success){
-        console.log("gaurav"+ JSON.stringify(nextProps.updateEmp));
         this.props.history.push('/employee');
      }
    }

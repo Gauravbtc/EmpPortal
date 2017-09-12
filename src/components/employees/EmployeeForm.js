@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../../css/NewEmployee.css';
 import { FormGroup,FormControl,ControlLabel,Button,Radio} from 'react-bootstrap';
-import { withRouter } from 'react-router-dom';
 
 class EmployeeForm extends Component{
   render(){
@@ -32,10 +31,10 @@ class EmployeeForm extends Component{
                       type="text" />
                       <span style={{color: "red"}}>{this.props.errors.lastname}</span>
                   </FormGroup>
-                  <FormGroup controlId="gender">
+                  <FormGroup controlId="gender" onChange={this.props.setGender}>
                     <ControlLabel>Gender</ControlLabel>
-                    <Radio value="male" name="gender" onChange={this.props.setGender} defaultChecked={this.props.emp.gender== "male" ? true : false}>Male</Radio>
-                    <Radio value="female" name="gender" onChange={this.props.setGender} defaultChecked={this.props.emp.gender== "female" ? true : false}>Female</Radio>
+                    <Radio value="male" name="gender" defaultChecked={this.props.emp.gender === "male" ? true : false}>Male</Radio>
+                    <Radio value="female" name="gender" defaultChecked={this.props.emp.gender === "female" ? true : false}>Female</Radio>
                   </FormGroup>
                   <FormGroup controlId="email">
                     <ControlLabel>Email</ControlLabel>

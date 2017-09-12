@@ -80,7 +80,7 @@ class NewEmployee extends Component {
          	let lastAtPos = emp.email.lastIndexOf('@');
          	let lastDotPos = emp.email.lastIndexOf('.');
 
-         	if (!(lastAtPos < lastDotPos && lastAtPos > 0 && emp.email.indexOf('@@') == -1 && lastDotPos > 2 && (emp.email.length - lastDotPos) > 2)) {
+         	if (!(lastAtPos < lastDotPos && lastAtPos > 0 && emp.email.indexOf('@@') === -1 && lastDotPos > 2 && (emp.email.length - lastDotPos) > 2)) {
                formIsValid = false;
                errors.email = "Email is not valid";
            }

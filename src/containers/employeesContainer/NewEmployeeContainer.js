@@ -1,7 +1,6 @@
 import NewEmployee from '../../components/employees/NewEmployee';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Redirect } from 'react-router';
 import { createEmployee, createEmployeeSuccess, createEmployeeFailure } from '../../actions/employee_action';
 
 function mapStateToProps(state, ownProps){
@@ -22,8 +21,6 @@ function matchDispatchToProps(dispatch){
           }
           else{
             dispatch(createEmployeeSuccess(response.data));
-            // {this.props.history.push("/employee")}
-            // <Redirect to="/employee" />
           }
       })
     },

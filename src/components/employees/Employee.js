@@ -73,23 +73,4 @@ class Employee extends Component{
     );
   }
 }
-
-class EmployeeBody extends Component{
-  render(){
-    return(
-      <tr>
-        <td>{this.props.id}</td>
-        <td>{this.props.firstname}</td>
-        <td>{this.props.lastname}</td>
-        <td>{this.props.gender}</td>
-        <td>{this.props.email}</td>
-        <td>
-          <Link to={`/employee/show/${this.props.id}`}><FontAwesome name='eye' className="btn btn-sm btn-primary" /></Link>
-          <Link to={`/employee/${this.props.id}/edit`}><FontAwesome name='pencil'className="btn btn-sm btn-primary"/></Link>
-          <p>{this.props.employees}</p>
-        </td>
-      </tr>
-    );
-  }
-}
 export default Employee;
