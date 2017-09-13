@@ -1,6 +1,7 @@
-import React from 'react'
+import React ,{ Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import '../../css/NewEmployee.css';
+
 
 const validate = values => {
   const errors = {}
@@ -10,8 +11,13 @@ const validate = values => {
   if (!values.lastname) {
     errors.lastname = 'Last name is required'
   }
+
+  if(!values.gender){
+    errors.gender="Select gender"
+  }
+
   if (!values.email) {
-    errors.email = 'email is required'
+    errors.email = 'Email is required'
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address'
   }
@@ -51,8 +57,10 @@ let EmpForm = props => {
             <div className="form-group">
               <label htmlFor="gender">Gender</label>
                 <div>
-                  <Field name= "gender" component="input" type="radio" value="male" />Male { ' '}
-                  <Field name= "gender" component="input" type="radio" value="female" /> {' '} Female { ' '}
+                <Field component={RadioGroup} name="gender" options={[
+                  { title: 'Male', value: 'male' },
+                  { title: 'Female', value: 'female' }
+                ]} />
                 </div>
             </div>
             <div>
@@ -62,8 +70,8 @@ let EmpForm = props => {
             <div className="form-group">
               <div>
                 <button type="submit" disabled={submitting} className="btn btn-primary">Submit</button>
-                <button type="button" disabled={pristine || submitting} onClick={reset} className="btn btn-danger">
-                  Clear Values
+                <button type="button" disabled={pristine || submitting} onClick={reset} className="btn btn-danger rest-btn">
+                  Reset
                 </button>
               </div>
             </div>
@@ -81,3 +89,18 @@ EmpForm = reduxForm({
 })(EmpForm)
 
 export default EmpForm;
+
+
+
+class RadioGroup extends Component {
+    render() {
+        const { input, meta, options } = this.props
+        const hasError = meta.touched && meta.error;
+        return (
+            <div>
+                {options.map(o => <label key={o.value}><input type="radio" {...input} value={o.value} checked={o.value === input.value} /> {o.title}</label>)}
+                {hasError && <span style={{color: "red"}}>{meta.error}</span>}
+            </div>
+        );
+    }
+}
