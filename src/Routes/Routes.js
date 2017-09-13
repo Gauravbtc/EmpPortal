@@ -8,6 +8,7 @@ import EmployeeIndex from '../pages/employee/EmployeeIndex';
 import ShowEmployee from '../pages/employee/ShowEmployee';
 import NewEmployeePage from '../pages/employee/NewEmployeePage';
 import EditEmployeePage from '../pages/employee/EditEmployeePage';
+import EmpFormPage from '../pages/employee/EmpFormPage';
 //import NewEmployee from '../components/employees/NewEmployee';
 //import ShowEmployee from '../containers/Employee/ShowEmployee';
 //import ShowEmployee from '../components/employees/ShowEmployee';
@@ -21,6 +22,7 @@ export default () => (
     <Route path = "/employee/show/:id" exact component = {ShowEmployee} />
     <Route path = "/employee/new" exact component = {NewEmployeePage} />
     <Route path = "/employee/:id/edit" exact component = {EditEmployeePage} />
+    <Route path = "/empForm/new" exact component = {EmpFormPage} />
     <Route component={NotFound} />
   </Switch>
 );
