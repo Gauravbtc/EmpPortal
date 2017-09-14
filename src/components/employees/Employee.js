@@ -2,12 +2,24 @@ import React, { Component } from 'react';
 import '../../css/Employee.css'
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
+import SearchInput, {createFilter} from 'react-search-input';
+
 
 class Employee extends Component{
-
   componentWillMount(){
     this.props.fetchEmployees()
   }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchTerm: ' '
+    };
+  }
+
+  searchUpdated (term) {
+      this.setState({searchTerm: term})
+    }
 
   resetMe(){
     this.props.resetMe();
@@ -36,6 +48,8 @@ class Employee extends Component{
 
   render(){
     const { employees, loading, error } = this.props.employeeList;
+    const KEYS_TO_FILTERS = ['firstname', 'lastname','email']
+    const filteredEmployess = employees.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
     if(loading) {
       return <div className="container"><h1>Employees</h1><h3>Loading...</h3></div>
     } else if(error) {
@@ -50,6 +64,7 @@ class Employee extends Component{
           </div>
         </div>
         <div className="panel-body">
+          <SearchInput className="search" onChange={this.searchUpdated.bind(this)} />
           <div className="table-responsive">
             <table className="table">
               <thead>
@@ -63,7 +78,7 @@ class Employee extends Component{
                 </tr>
               </thead>
               <tbody>
-                {this.createEmployees(employees)}
+                {this.createEmployees(filteredEmployess)}
               </tbody>
             </table>
           </div>

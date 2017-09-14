@@ -1,7 +1,7 @@
 import React ,{ Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import '../../css/NewEmployee.css';
-
+import { FileUpload } from 'redux-file-upload'
 
 const validate = values => {
   const errors = {}
@@ -67,6 +67,15 @@ let EmpForm = props => {
               <label htmlFor="email">Email</label>
               <Field name="email" component={renderField} type="email" />
             </div>
+
+            <div className="form-group">
+            <FileUpload allowedFileTypes={['jpg', 'pdf']} data={{ type: 'picture' }} dropzoneId="fileUpload" url="/action">
+              <button>
+                Click or drag here
+              </button>
+            </FileUpload>
+            </div>
+
             <div className="form-group">
               <div>
                 <button type="submit" disabled={submitting} className="btn btn-primary">Submit</button>
@@ -95,6 +104,7 @@ export default EmpForm;
 class RadioGroup extends Component {
     render() {
         const { input, meta, options } = this.props
+        console.log(meta);
         const hasError = meta.touched && meta.error;
         return (
             <div>

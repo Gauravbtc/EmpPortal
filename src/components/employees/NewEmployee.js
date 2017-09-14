@@ -4,7 +4,7 @@ class NewEmployee extends Component {
 
  submit = (values) => {
    console.log(values);
-    this.props.createEmployee(values);
+    //this.props.createEmployee(values);
  }
 
  componentWillReceiveProps(nextProps) {
