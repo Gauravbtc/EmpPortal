@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
-import  EmpForm from './EmpForm';
+import EmpForm from './EmpForm';
 class NewEmployee extends Component {
 
- submit = (values) => {
-   console.log(values);
-    //this.props.createEmployee(values);
- }
+   submit = (values) => {
+    let formData = new FormData();
+    console.log(values);
+    values["photo"] = values.photo
+    for(const key in values){
+      if(key === 'photo'){
+        formData.append(key,values[key][0])
+      }
+     else {
+        formData.append(key,values[key])
+      }
+    }
+    this.props.createEmployee(formData);
+   }
+
+
 
  componentWillReceiveProps(nextProps) {
      if(nextProps.newEmployee.success){

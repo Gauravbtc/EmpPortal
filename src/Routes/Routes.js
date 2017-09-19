@@ -9,6 +9,7 @@ import ShowEmployee from '../pages/employee/ShowEmployee';
 import NewEmployeePage from '../pages/employee/NewEmployeePage';
 import EditEmployeePage from '../pages/employee/EditEmployeePage';
 import EmpFormPage from '../pages/employee/EmpFormPage';
+import FileInput from '../components/employees/FileInput';
 //import NewEmployee from '../components/employees/NewEmployee';
 //import ShowEmployee from '../containers/Employee/ShowEmployee';
 //import ShowEmployee from '../components/employees/ShowEmployee';
@@ -23,6 +24,7 @@ export default () => (
     <Route path = "/employee/new" exact component = {NewEmployeePage} />
     <Route path = "/employee/:id/edit" exact component = {EditEmployeePage} />
     <Route path = "/empForm/new" exact component = {EmpFormPage} />
+    <Route path = "/upload" exact component = {FileInput} />
     <Route component={NotFound} />
   </Switch>
 );

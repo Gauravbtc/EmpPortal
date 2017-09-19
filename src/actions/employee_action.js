@@ -1,23 +1,5 @@
 import axios from 'axios';
 
-export function hello(){
-  console.log("call hello function")
-}
-
-export const addEmp = (params) =>{
-  console.log("action"+ params)
-  return {
-  type: 'ADD_EMP',
-  params
-}
-}
-
-export const editEmp = (text) =>({
-  type: 'EDIT_EMP',
-  text
-})
-
-
 export const employeeList = () =>{
     return {
       type: "EMPLOYEE_LIST",
@@ -101,6 +83,7 @@ export function createEmployee(params){
     url: 'http://localhost:3005/v1/users',
     data: params,
     headers: []
+
   });
 
   return {

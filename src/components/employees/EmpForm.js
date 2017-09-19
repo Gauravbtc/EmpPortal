@@ -1,7 +1,8 @@
 import React ,{ Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
-import '../../css/NewEmployee.css';
-import { FileUpload } from 'redux-file-upload'
+import '../../css/NewEmployee.css'
+import FileBase64 from 'react-file-base64';
+//import FileInput from './FileInput'
 
 const validate = values => {
   const errors = {}
@@ -37,15 +38,46 @@ const renderField = ({input,label,type,meta: { touched, error }}) =>
   </div>
 
 
-let EmpForm = props => {
-  const { handleSubmit,pristine, reset, submitting} = props
-  return (
-    <div>
+  const UploadFile = ({ input: {value: omitValue, ...inputProps }, meta: omitMeta, ...props }) => (
+    <input type='file' {...inputProps} {...props} />
+  );
+
+class EmpForm extends Component{
+  constructor(props){
+    super(props);
+    var src = this.props.initialValues? this.props.initialValues.photo : ' ';
+    console.log(src);
+    this.state = {
+      imgSrc: src,
+      files: []
+    }
+  }
+
+  getFiles(files){
+    this.setState({ files: files })
+  }
+
+
+
+  ImagePreview(e){
+  var file = e.target.files[0]
+  var reader = new FileReader();
+  var url = reader.readAsDataURL(file);
+  reader.onloadend = function (e) {
+      this.setState({
+          imgSrc: [reader.result]
+      })
+    }.bind(this);
+  }
+  render(){
+    const { handleSubmit,pristine, reset, submitting } = this.props
+    return(
+      <div>
       <div className="panel panel-default">
         <div className="panel-heading">New Employee</div>
         <div className="panel-body">
         <div className="NewEmployee">
-          <form onSubmit={ handleSubmit }>
+          <form onSubmit={ handleSubmit } encType="multipart/form-data">
             <div>
               <label htmlFor="firstName">First Name</label>
               <Field name="firstname" component= {renderField} type="text" />
@@ -63,19 +95,16 @@ let EmpForm = props => {
                 ]} />
                 </div>
             </div>
-            <div>
+            <div className="form-group">
               <label htmlFor="email">Email</label>
-              <Field name="email" component={renderField} type="email" />
+              <Field name="email" component={renderField} type="email"  />
             </div>
 
             <div className="form-group">
-            <FileUpload allowedFileTypes={['jpg', 'pdf']} data={{ type: 'picture' }} dropzoneId="fileUpload" url="/action">
-              <button>
-                Click or drag here
-              </button>
-            </FileUpload>
+              <label>Files</label>
+              <Field name="photo" component={UploadFile} type="file" onChange={this.ImagePreview.bind(this)}/>
+              <img src={this.state.imgSrc} />
             </div>
-
             <div className="form-group">
               <div>
                 <button type="submit" disabled={submitting} className="btn btn-primary">Submit</button>
@@ -89,7 +118,8 @@ let EmpForm = props => {
         </div>
         </div>
     </div>
-  )
+    )
+  }
 }
 EmpForm = reduxForm({
   // a unique name for the form
