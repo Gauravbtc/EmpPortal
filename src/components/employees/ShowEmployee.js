@@ -19,6 +19,7 @@ class ShowEmployee extends Component{
         <p>Last Name: {employee.lastname}</p>
         <p>Gender: {employee.gender}</p>
         <p>EMail: {employee.email} </p>
+        <p><img src= {employee.user_photo} /></p>
       </div>
     );
   }

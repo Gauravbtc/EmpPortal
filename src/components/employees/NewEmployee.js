@@ -4,8 +4,6 @@ class NewEmployee extends Component {
 
    submit = (values) => {
     let formData = new FormData();
-    console.log(values);
-    values["photo"] = values.photo
     for(const key in values){
       if(key === 'photo'){
         formData.append(key,values[key][0])

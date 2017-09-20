@@ -45,19 +45,11 @@ const renderField = ({input,label,type,meta: { touched, error }}) =>
 class EmpForm extends Component{
   constructor(props){
     super(props);
-    var src = this.props.initialValues? this.props.initialValues.photo : ' ';
-    console.log(src);
+    var src = this.props.initialValues? this.props.initialValues.user_photo : ' ';
     this.state = {
       imgSrc: src,
-      files: []
     }
   }
-
-  getFiles(files){
-    this.setState({ files: files })
-  }
-
-
 
   ImagePreview(e){
   var file = e.target.files[0]
@@ -65,7 +57,7 @@ class EmpForm extends Component{
   var url = reader.readAsDataURL(file);
   reader.onloadend = function (e) {
       this.setState({
-          imgSrc: [reader.result]
+          imgSrc: reader.result
       })
     }.bind(this);
   }
@@ -102,7 +94,7 @@ class EmpForm extends Component{
 
             <div className="form-group">
               <label>Files</label>
-              <Field name="photo" component={UploadFile} type="file" onChange={this.ImagePreview.bind(this)}/>
+              <Field name="photo" component={UploadFile} onChange={this.ImagePreview.bind(this)}/>
               <img src={this.state.imgSrc} />
             </div>
             <div className="form-group">

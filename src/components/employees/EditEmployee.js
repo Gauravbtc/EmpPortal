@@ -14,24 +14,15 @@ class EditEmployee extends Component{
 
  submit = (values) => {
    let formData = new FormData();
-   console.log(values);
-  //  //console.log(values);
-  //  values["photo"] = values.photo
-  // //  //values["id"] =  values.id
-  // //  //console.log(values.photo);
-  // //  for(const key in values){
-  // //    if(key === 'photo'){
-  // //      console.log("photo");
-  // //      console.log(key + "=>" + values[key]);
-  // //      formData.append(key,values[key])
-  // //    }
-  // //   else {
-  // //     console.log(key + "=>" + values[key]);
-  // //      formData.append(key,values[key])
-  // //    }
-  // //  }
-  //  //console.log(JSON.strigify(formData));
- //this.props.updateEmployee(values)
+   for(const key in values){
+     if(key === 'photo'){
+       formData.append(key,values[key][0])
+     }
+    else {
+       formData.append(key,values[key])
+     }
+   }
+   this.props.updateEmployee(formData)
  }
 
    componentWillReceiveProps(nextProps) {

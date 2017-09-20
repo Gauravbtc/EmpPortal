@@ -111,7 +111,7 @@ export function createEmployeeFailure(err){
 export function updateEmployee(params){
   const request = axios({
     method: 'put',
-    url: `http://localhost:3005/v1/users/${params.id}`,
+    url: `http://localhost:3005/v1/users/${params.get("id")}`,
     data: params,
     headers: []
   });
