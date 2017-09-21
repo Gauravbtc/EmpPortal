@@ -1,10 +1,10 @@
 import React ,{ Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import '../../css/NewEmployee.css'
-import FileBase64 from 'react-file-base64';
+
 //import FileInput from './FileInput'
 
-const validate = values => {
+const validate = (values) => {
   const errors = {}
   if (!values.firstname) {
     errors.firstname = 'First name is required'
@@ -38,14 +38,23 @@ const renderField = ({input,label,type,meta: { touched, error }}) =>
   </div>
 
 
-  const UploadFile = ({ input: {value: omitValue, ...inputProps }, meta: omitMeta, ...props }) => (
-    <input type='file' {...inputProps} {...props} />
+  const UploadFile = ({ input: {value: omitValue,...inputProps }, meta: omitMeta,...props }) => (
+    <div>
+      <input type='file' {...inputProps} {...props} />
+      {omitMeta.touched &&
+        ((omitMeta.error &&
+          <span style={{color: "red"}}>
+            <p>Gaurav</p>
+          </span>))}
+    </div>
   );
+
+
 
 class EmpForm extends Component{
   constructor(props){
     super(props);
-    var src = this.props.initialValues? this.props.initialValues.user_photo : ' ';
+    var src = this.props.initialValues? this.props.initialValues.user_photo : "";
     this.state = {
       imgSrc: src,
     }
@@ -63,6 +72,16 @@ class EmpForm extends Component{
   }
   render(){
     const { handleSubmit,pristine, reset, submitting } = this.props
+    const imgsrc = this.state.imgSrc
+    //const imgurl = this.props.initialValues? <img src= {this.state.imgSrc} /> : " "
+    // let {imagePreviewUrl} = this.state.imgSrc;
+    // let $imagePreview = null;
+    // if (imagePreviewUrl) {
+    //   $imagePreview = (<img src={imagePreviewUrl} />);
+    // } else {
+    //   $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+    // }
+
     return(
       <div>
       <div className="panel panel-default">
@@ -94,8 +113,8 @@ class EmpForm extends Component{
 
             <div className="form-group">
               <label>Files</label>
-              <Field name="photo" component={UploadFile} onChange={this.ImagePreview.bind(this)}/>
-              <img src={this.state.imgSrc} />
+              <Field name="photo" component={UploadFile} onChange={this.ImagePreview.bind(this)} />
+               {imgsrc && <img src={imgsrc} />}
             </div>
             <div className="form-group">
               <div>

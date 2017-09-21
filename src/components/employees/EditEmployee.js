@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import EmpForm from './EmpForm';
 import { withRouter } from 'react-router-dom';
-//import FileInput from './FileInput';
 
 class EditEmployee extends Component{
   constructor(props) {
