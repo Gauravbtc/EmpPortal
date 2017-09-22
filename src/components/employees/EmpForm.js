@@ -2,8 +2,6 @@ import React ,{ Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import '../../css/NewEmployee.css'
 
-//import FileInput from './FileInput'
-
 const validate = (values) => {
   const errors = {}
   if (!values.firstname) {

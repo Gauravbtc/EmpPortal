@@ -23,6 +23,8 @@ class Header extends Component{
             <RouteNavItem onClick={this.handleNavLink.bind(this)} href="/employee">Home</RouteNavItem>
             <RouteNavItem onClick={this.handleNavLink.bind(this)} href="/about">About</RouteNavItem>
             <RouteNavItem onClick={this.handleNavLink.bind(this)} href="/contact">Contact</RouteNavItem>
+            <RouteNavItem onClick={this.handleNavLink.bind(this)} href="/login">Login</RouteNavItem>
+
           </Nav>
         </Navbar.Collapse>
     </Navbar>
