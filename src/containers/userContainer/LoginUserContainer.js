@@ -19,16 +19,14 @@ function matchDispatchToProps(dispatch){
             dispatch(userLoginSuccess(response.data));   
           }
           else{
-            console.log("Fail"+ JSON.stringify(response));
             dispatch(userLoginFailure(response.data));
           }
         })
-      .catch((err)=>{
-        dispatch(userLoginFailure(err.response.data))
-      })
-    },
+        .catch((err)=>{
+          console.log(err)
+          dispatch(userLoginFailure(err.response.data))
+        })
+      },
+    }
   }
-}
-
-
 export default connect(mapStateToProps,matchDispatchToProps)(LoginUser)

@@ -11,21 +11,24 @@ class LoginUser extends Component{
 
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.loginUser.success){
+    if(nextProps.loginUser.success){
        this.props.history.push('/employee');
     }
+  }
+
+  error_message(error){
+    if(error){
+    return <div className="alert alert-danger">Error: {error.message} </div>}
   }
 
   render(){
     const { user, loading, error,success} = this.props.loginUser;
     if(loading) {
       return <div className="container"><h1>Logging</h1></div>
-    } else if(error) {
-      return <div className="alert alert-danger">Error: {error.message}</div>
     }
-
     return(
       <div>
+        {this.error_message(error)}
         <LoginForm onSubmit={this.submit}/>
       </div>
     )
