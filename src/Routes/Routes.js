@@ -1,3 +1,4 @@
+import AppliedRoute from "./AppliedRoute";
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from '../containers/Home';
@@ -15,7 +16,7 @@ import UserLoginPage from '../pages/user/UserLoginPage';
 //import ShowEmployee from '../containers/Employee/ShowEmployee';
 //import ShowEmployee from '../components/employees/ShowEmployee';
 
-export default () => (
+export default ({ childProps }) => (
   <Switch>
     <Route path= "/" exact component={Home} />
     <Route path= "/contact" exact component={Contact} />
@@ -25,7 +26,7 @@ export default () => (
     <Route path = "/employee/new" exact component = {NewEmployeePage} />
     <Route path = "/employee/:id/edit" exact component = {EditEmployeePage} />
     <Route path = "/empForm/new" exact component = {EmpFormPage} />
-    <Route path = "/login" exact component = {UserLoginPage} />
+    <AppliedRoute path = "/login" exact component = {UserLoginPage} props ={childProps}  />
     <Route component={NotFound} />
   </Switch>
 );

@@ -28,17 +28,6 @@ const renderField = ({input,label,type,meta: { touched, error }}) =>
   </div>
 
 
-  const UploadFile = ({ input: {value: omitValue,...inputProps }, meta: omitMeta,...props }) => (
-    <div>
-      <input type='file' {...inputProps} {...props} />
-      {omitMeta.touched &&
-        ((omitMeta.error &&
-          <span style={{color: "red"}}>
-            <p>Gaurav</p>
-          </span>))}
-    </div>
-  );
-
 class LoginForm extends Component{
   render(){
     const { handleSubmit,pristine, reset, submitting } = this.props
@@ -71,6 +60,8 @@ class LoginForm extends Component{
     )
   }
 }
+
+
 LoginForm = reduxForm({
   // a unique name for the form
   form: 'LoginForm',

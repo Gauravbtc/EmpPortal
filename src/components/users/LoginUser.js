@@ -4,15 +4,17 @@ import { withRouter } from 'react-router-dom'
 
 class LoginUser extends Component{
 
+  constructor(props){
+    super(props);
+  }
   submit = (values) => {
-   //console.log(values);
    this.props.userLogin(values);
   }
-
-
   componentWillReceiveProps(nextProps) {
     if(nextProps.loginUser.success){
-       this.props.history.push('/employee');
+      this.props.userHasAuthenticated(true);
+      //this.props.history.push('/employee');
+      
     }
   }
 

@@ -5,7 +5,8 @@ import LoginUserContainer from '../../containers/userContainer/LoginUserContaine
 class LoginUserPage extends Component{
     render(){
       return(
-        <LoginUserContainer />
+        <LoginUserContainer isAuthenticated= {this.props.isAuthenticated}  userHasAuthenticated = {this.props.userHasAuthenticated}
+          />
       );
     }
   }
