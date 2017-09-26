@@ -10,6 +10,9 @@ import NewEmployeePage from '../pages/employee/NewEmployeePage';
 import EditEmployeePage from '../pages/employee/EditEmployeePage';
 import EmpFormPage from '../pages/employee/EmpFormPage';
 import UserLoginPage from '../pages/user/UserLoginPage';
+import Header from '../layouts/Header';
+import Footer from '../layouts/Footer';
+
 //import LoginUser from '../components/Users/LoginUser';
 //import NewEmployee from '../components/employees/NewEmployee';
 //import ShowEmployee from '../containers/Employee/ShowEmployee';

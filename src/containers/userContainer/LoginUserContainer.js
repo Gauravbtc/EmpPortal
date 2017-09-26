@@ -1,7 +1,7 @@
 import LoginUser from '../../components/users/LoginUser';
 import { connect } from 'react-redux';
 import { userLogin, userLoginSuccess,userLoginFailure } from '../../actions/user_action';
-
+import {authenticated,unauthenticated,authenticated_error} from '../../actions/auth_action';
 
 function mapStateToProps(state, ownProps){
     return{
@@ -16,15 +16,19 @@ function matchDispatchToProps(dispatch){
       (dispatch(userLogin(params)).payload)
         .then((response) => {
           if(!response.error && response.status === 200){
-            dispatch(userLoginSuccess(response.data));   
+            dispatch(userLoginSuccess(response.data));
+            dispatch(authenticated());
+            localStorage.setItem('user', response.data.auth_token);   
           }
           else{
             dispatch(userLoginFailure(response.data));
+            dispatch(unauthenticated());
           }
         })
         .catch((err)=>{
           console.log(err)
           dispatch(userLoginFailure(err.response.data))
+          dispatch(authenticated_error());
         })
       },
     }

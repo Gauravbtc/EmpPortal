@@ -29,3 +29,31 @@ export function userLoginFailure(err){
     payload: err
   }
 }
+
+
+export function userLogout(token){
+  const request = axios({
+    method: 'delete',
+    url: 'http://localhost:3005/v1/m_users/sign_out',
+    headers: {'auth_token': token}
+  });
+
+  return {
+    type: "USER_LOGOUT",
+    payload: request
+  }
+}
+
+export function userLogoutSuccess(user){
+  return{
+    type: "USER_LOGOUT_SUCCESS",
+    payload: user
+  }
+}
+
+export function userLogoutFailure(err){
+  return{
+    type: "USER_LOGOUT_FAILURE",
+    payload: err
+  }
+}
