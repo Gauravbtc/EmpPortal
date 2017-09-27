@@ -1,25 +1,5 @@
 import axios from 'axios';
 
-export const employeeList = () =>{
-    return {
-      type: "EMPLOYEE_LIST",
-      payload: employee_data
-    }
-}
-
-export const defaultEmp = (payload) =>{
-   return {
-     type: "DEFAULT_EMP",
-     payload
-   }
-}
-
-  const employee_data = [
-    {id: 1, firstname: 'Gaurav', lastname: 'Makwana', age: '23', city: 'Cambay'},
-    {id: 2, firstname: 'Maimit', lastname: 'Patel', age: '25', city: 'Baroda'},
-  ];
-
-
   export const fetchEmployees = () =>{
     const request = axios({
       method: 'get',
@@ -82,10 +62,9 @@ export function createEmployee(params){
     method: 'post',
     url: 'http://localhost:3005/v1/users',
     data: params,
-    headers: []
-
+    headers: {'auth_token': localStorage.getItem('user')}
   });
-
+  
   return {
     type: "CREATE_EMPLOYEE",
     payload: request

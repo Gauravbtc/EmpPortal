@@ -10,7 +10,10 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/index_reducers';
 import { composeWithDevTools} from 'redux-devtools-extension';
+import { authenticated } from './actions/auth_action';
 
+
+//const user = localStorage.getItem('user');
 
 const store = createStore(
   rootReducer,
@@ -18,6 +21,12 @@ const store = createStore(
     applyMiddleware(thunk),
   )
 );
+
+
+// if(user) {
+//   store.dispatch(authenticated(user));
+// }
+
 
 ReactDOM.render(
 <Provider store={store}>

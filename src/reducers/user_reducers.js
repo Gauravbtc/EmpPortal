@@ -1,6 +1,5 @@
 const INITIAL_STATE ={ 
-  loginUser: {user: null, error:null, loading: false,auth_token: null,message: null,success: false},
-  logoutUser: {user: null,error:null, loading: false,message: null,success: false}
+  loginUser: {user: null, error:null, loading: false,auth_token: null,message: null,success: false}
 };
 
 const users = (state = INITIAL_STATE, action) => {
@@ -16,13 +15,15 @@ const users = (state = INITIAL_STATE, action) => {
       return {...state, loginUser: { user: null, error: error, loading: false,autch_token: null,message: action.payload.message,success: action.payload.success}}
       
     case "USER_LOGOUT": 
-      return {...state, logoutUser: { user: null, error: null, loading: true,message: null,success: false}}
+      return {...state, loginUser: { user: null, error: null, loading: true,message: null,success: false}}
     case "USER_LOGOUT_SUCCESS":
-      return {...state, logoutUser: { user: action.payload.user, error: null, loading: false,message: action.payload.message,success: action.payload.success}}
+      return {...state, loginUser: { user: null, error: null, loading: false,message: action.payload.message,success: action.payload.success}}
     case "USER_LOGOUT_FAILURE":
       error = action.payload || {message: action.payload.message};
       return {...state, loginUser: { user: null, error: error, loading: false,message: action.payload.message,success: action.payload.success}}
     
+    case "RESET_LOGIN_USER":
+      return {...state, loginUser: { user: null, error: null, loading: false,autch_token: null,message: null,success: false}}
     default:
       return state
   }

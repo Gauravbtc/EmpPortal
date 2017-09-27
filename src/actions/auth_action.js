@@ -4,16 +4,14 @@ export function authenticated(){
     }
   }  
 
-  export function unauthenticated(){
-    return{
-      type: "UNAUTHENTICATED"
-    }
-  }  
+export function unauthenticated(){
+  return{
+    type: "UNAUTHENTICATED"
+  }
+}  
 
-  export function authenticated_error(){
-    return{
-      type: "AUTHENTICATION_ERROR"
-    }
-  }  
-
-  
+export function authenticated_error(){
+  return{
+    type: "AUTHENTICATION_ERROR"
+  }
+}  

@@ -57,3 +57,10 @@ export function userLogoutFailure(err){
     payload: err
   }
 }
+
+export function resetloginUser(){
+  return{
+    type: "RESET_LOGIN_USER"
+  }
+}
+

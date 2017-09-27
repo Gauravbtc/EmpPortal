@@ -1,4 +1,4 @@
-const INITIAL_STATE = { authenticate:false ,user: null,auth_token: null};
+const INITIAL_STATE = { authenticate:false};
 
 const auth = (state = INITIAL_STATE, action) => {
   switch(action.type) {

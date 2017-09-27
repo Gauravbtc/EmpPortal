@@ -1,7 +1,7 @@
 import React,{ Component } from 'react'
 import { connect } from 'react-redux';
 import {  withRouter, Link } from 'react-router-dom';
-import { userLogout, userLogoutSuccess,userLogoutFailure } from '../actions/user_action';
+import { resetloginUser,userLogout,userLogoutSuccess,userLogoutFailure } from '../actions/user_action';
 import {authenticated,unauthenticated,authenticated_error} from '../actions/auth_action';
 import RouteNavItem from '../components/RouteNavItem';
 
@@ -12,9 +12,8 @@ class NavBar extends Component {
   }
 
   componentWillUnmount(){
-    var redirect = this.props.logoutUser.success
-    if(redirect){
-        this.props.history.push("/login");
+    if(this.props.loginUser.message === "Sign out sucessfully"){
+      this.props.history.push('/employee');
     }
   }
 
@@ -29,8 +28,8 @@ class NavBar extends Component {
 
 function mapStateToProps(state,Ownprops) {
   return {
-    authenticated: state.auth.authenticated,
-    logoutUser: state.user.logoutUser
+    authenticated: state.auth.authenticate,
+    loginUser: state.user.loginUser
   };
 }
 
@@ -43,17 +42,19 @@ function matchDispatchToProps(dispatch){
           if(!response.error && response.status === 200){
             dispatch(userLogoutSuccess(response.data));
             dispatch(unauthenticated());
-            localStorage.removeItem("user");
+            localStorage.clear();
           }
           else{
-            dispatch(userLogoutFailure(response.data));
-            dispatch(authenticated());
+            dispatch(userLogoutFailure());
           }
         })
         .catch((err)=>{
           dispatch(authenticated_error());
         })
       },
+      resetMe: () => {
+        dispatch(resetloginUser());
+      }
     }
   }
 

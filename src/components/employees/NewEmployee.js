@@ -16,7 +16,6 @@ class NewEmployee extends Component {
    }
 
 
-
  componentWillReceiveProps(nextProps) {
      if(nextProps.newEmployee.success){
        this.props.history.push("/employee")

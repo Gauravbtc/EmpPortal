@@ -1,6 +1,6 @@
 import LoginUser from '../../components/users/LoginUser';
 import { connect } from 'react-redux';
-import { userLogin, userLoginSuccess,userLoginFailure } from '../../actions/user_action';
+import { userLogin, userLoginSuccess,userLoginFailure,userLogoutSuccess} from '../../actions/user_action';
 import {authenticated,unauthenticated,authenticated_error} from '../../actions/auth_action';
 
 function mapStateToProps(state, ownProps){
@@ -26,7 +26,6 @@ function matchDispatchToProps(dispatch){
           }
         })
         .catch((err)=>{
-          console.log(err)
           dispatch(userLoginFailure(err.response.data))
           dispatch(authenticated_error());
         })

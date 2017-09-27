@@ -12,10 +12,11 @@ class LoginUser extends Component{
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.loginUser.success){
-       this.props.history.push('/employee');
+       this.props.history.push('/');
     }
   }
 
+  
   error_message(error){
     if(error){
     return <div className="alert alert-danger">Error: {error.message} </div>}

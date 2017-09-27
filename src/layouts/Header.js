@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter,Link} from 'react-router-dom';
-import { Navbar,Nav,NavItem} from 'react-bootstrap';
+import { Navbar,Nav} from 'react-bootstrap';
 import RouteNavItem from '../components/RouteNavItem';
 import '../css/Header.css';
 import { connect } from 'react-redux';
