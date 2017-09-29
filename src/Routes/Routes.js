@@ -10,7 +10,9 @@ import NewEmployeePage from '../pages/employee/NewEmployeePage';
 import EditEmployeePage from '../pages/employee/EditEmployeePage';
 import EmpFormPage from '../pages/employee/EmpFormPage';
 import UserLoginPage from '../pages/user/UserLoginPage';
+import UserSignUpPage from '../pages/user/UserSignUpPage';
 import requireAuth from '../components/auth/require_auth';
+//import SignUpForm from '../components/users/SignUpUser';
 
 //import LoginUser from '../components/Users/LoginUser';
 //import NewEmployee from '../components/employees/NewEmployee';
@@ -28,6 +30,7 @@ export default ( ) => (
     <Route path = "/employee/:id/edit" exact component = {requireAuth(EditEmployeePage)} />
     <Route path = "/empForm/new" exact component = {requireAuth(EmpFormPage)} />
     <Route path = "/login" exact component = {UserLoginPage} />
+    <Route path = "/signup" exact component = {UserSignUpPage} />
     <Route component={NotFound} />
   </Switch>
 );

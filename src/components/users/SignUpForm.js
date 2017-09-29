@@ -12,6 +12,14 @@ const validate = (values) => {
   if (!values.password) {
     errors.password = 'Password is required'
   }
+
+  if(!values.password_confirmation){
+    errors.password_confirmation = 'Password confirmation is required'
+  }
+
+  if(values.password_confirmation!= values.password){
+    errors.password_confirmation = 'Password and Password confirmation are same'
+  }
   return errors
 }
 
@@ -27,13 +35,13 @@ const renderField = ({input,label,type,meta: { touched, error }}) =>
     </div>
   </div>
 
-class LoginForm extends Component{
+class SignUpForm extends Component{
   render(){
     const { handleSubmit,pristine, reset, submitting } = this.props
     return(
       <div>
       <div className="panel panel-default">
-        <div className="panel-heading">Login</div>
+        <div className="panel-heading">SignUp</div>
         <div className="panel-body">
         <div className="NewEmployee">
           <form onSubmit={ handleSubmit }>
@@ -41,14 +49,17 @@ class LoginForm extends Component{
               <label htmlFor="email">Email</label>
               <Field name="email" component={renderField} type="email"  />
             </div>
-
             <div className="form-group">
               <label htmlFor="email">Password</label>
               <Field name="password" component={renderField} type="password"  />
             </div>
             <div className="form-group">
+              <label htmlFor="email">Confirm Password</label>
+              <Field name="password_confirmation" component={renderField} type="password"  />
+            </div>
+            <div className="form-group">
               <div>
-                <button type="submit" disabled={submitting} className="btn btn-primary">Login</button>
+                <button type="submit" disabled={submitting} className="btn btn-primary">SignUp</button>
               </div>
             </div>
           </form>
@@ -59,10 +70,10 @@ class LoginForm extends Component{
     )
   }
 }
-LoginForm = reduxForm({
+SignUpForm = reduxForm({
   // a unique name for the form
-  form: 'LoginForm',
+  form: 'SignUpForm',
   validate
-})(LoginForm)
+})(SignUpForm)
 
-export default LoginForm;
+export default (SignUpForm);

@@ -64,3 +64,31 @@ export function resetloginUser(){
   }
 }
 
+
+export function userSignUp(params){
+  const request = axios({
+    method: 'post',
+    url: 'http://localhost:3005/v1/m_users',
+    data: params,
+    headers: []
+
+  });
+  return {
+    type: "USER_SIGNUP",
+    payload: request
+  }
+}
+
+export function userSignUpSuccess(user){
+  return{
+    type: "USER_SIGNUP_SUCCESS",
+    payload: user
+  }
+}
+
+export function userSignUpFailure(err){
+  return{
+    type: "USER_SIGNUP_FAILURE",
+    payload: err
+  }
+}
