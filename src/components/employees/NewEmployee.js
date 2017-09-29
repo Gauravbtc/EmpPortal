@@ -24,6 +24,7 @@ class NewEmployee extends Component {
 
   render(){
     const { employee, loading, error,success} = this.props.newEmployee;
+    const m_user_id = this.props.loginUser.id;
     if(loading) {
       return <div className="container"><h1>Employees</h1><h3>Creating...</h3></div>
     } else if(error) {
@@ -31,7 +32,7 @@ class NewEmployee extends Component {
     }
     return(
       <div>
-        <EmpForm onSubmit= {this.submit} />
+        <EmpForm onSubmit= {this.submit} m_user_id = {m_user_id} />
       </div>
     );
   }

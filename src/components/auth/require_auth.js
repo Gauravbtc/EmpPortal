@@ -11,7 +11,6 @@ export default function (ComposedComponent) {
     }
   
     componentWillUpdate(nextProps) {
-      console.log(nextProps.authenticated);
       if (!nextProps.authenticated) {
         this.props.history.push('/login');
       }

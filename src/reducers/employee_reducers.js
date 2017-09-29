@@ -14,7 +14,9 @@ const employee = (state = INITIAL_STATE, action) => {
         return {...state, employeeList: { employees: action.payload, error: null, loading: false}}
     case "FETCH_EMPLOYEES_FAILURE":
         error = action.payload || {message: action.payload.message};
-      return {...state, employeeList: { employees: [], error: error, loading: false}}
+				return {...state, employeeList: { employees: [], error: error, loading: false}}				
+		case "RESET_EMPLOYEES":
+		return {...state, employeeList: { employees: [], error: null, loading: true}}
 
     case 'FETCH_EMPLOYEE':
        return {...state, showEmployee: { ...state.showEmployee, error: null, loading: true}}

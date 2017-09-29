@@ -48,8 +48,9 @@ class Employee extends Component{
 
   render(){
     const { employees, loading, error } = this.props.employeeList;
-    const KEYS_TO_FILTERS = ['firstname', 'lastname','email']
-    const filteredEmployess = employees.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
+    const KEYS_TO_FILTERS = ['firstname', 'lastname','email'];
+
+    const filteredEmployess = employees.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS));
     if(loading) {
       return <div className="container"><h1>Employees</h1><h3>Loading...</h3></div>
     } else if(error) {

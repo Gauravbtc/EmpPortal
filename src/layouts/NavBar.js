@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {  withRouter, Link } from 'react-router-dom';
 import { resetloginUser,userLogout,userLogoutSuccess,userLogoutFailure } from '../actions/user_action';
 import {authenticated,unauthenticated,authenticated_error} from '../actions/auth_action';
+import {restEmployees} from '../actions/employee_action'
 import RouteNavItem from '../components/RouteNavItem';
 
 class NavBar extends Component {
@@ -13,7 +14,7 @@ class NavBar extends Component {
 
   componentWillUnmount(){
     if(this.props.loginUser.message === "Sign out sucessfully"){
-      this.props.history.push('/employee');
+      this.props.history.push('/login');
     }
   }
 
@@ -41,6 +42,7 @@ function matchDispatchToProps(dispatch){
         .then((response) => {
           if(!response.error && response.status === 200){
             dispatch(userLogoutSuccess(response.data));
+            dispatch(restEmployees());
             dispatch(unauthenticated());
             localStorage.clear();
           }

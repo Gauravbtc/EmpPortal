@@ -58,6 +58,12 @@ class EmpForm extends Component{
     }
   }
 
+  componentWillMount() {
+    if(this.props.m_user_id){
+      this.props.initialize({m_user_id: this.props.m_user_id});
+    }
+  }
+
   ImagePreview(e){
   var file = e.target.files[0]
   var reader = new FileReader();
@@ -70,16 +76,8 @@ class EmpForm extends Component{
   }
   render(){
     const { handleSubmit,pristine, reset, submitting } = this.props
+    console.log("gaurav" +this.props.initialValues);
     const imgsrc = this.state.imgSrc
-    //const imgurl = this.props.initialValues? <img src= {this.state.imgSrc} /> : " "
-    // let {imagePreviewUrl} = this.state.imgSrc;
-    // let $imagePreview = null;
-    // if (imagePreviewUrl) {
-    //   $imagePreview = (<img src={imagePreviewUrl} />);
-    // } else {
-    //   $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
-    // }
-
     return(
       <div>
       <div className="panel panel-default">

@@ -4,10 +4,10 @@ import { withRouter } from 'react-router-dom';
 import { createEmployee, createEmployeeSuccess, createEmployeeFailure } from '../../actions/employee_action';
 
 function mapStateToProps(state, ownProps){
-  //console.log("hhh"+ JSON.stringify(state.employees.newEmployee));
   return{
     newEmployee: state.employees.newEmployee,
-    params: ownProps
+    params: ownProps,
+    loginUser: state.user.loginUser.user
   }
 }
 
