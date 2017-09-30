@@ -12,6 +12,11 @@ import EmpFormPage from '../pages/employee/EmpFormPage';
 import UserLoginPage from '../pages/user/UserLoginPage';
 import UserSignUpPage from '../pages/user/UserSignUpPage';
 import requireAuth from '../components/auth/require_auth';
+import ConfirmationMessage from '../components/users/ConfirmationMessage';
+//import Confirmation from '../components/users/Confirmation';
+
+import Confirmation from '../containers/userContainer/ConfirmationContainer';
+
 //import SignUpForm from '../components/users/SignUpUser';
 
 //import LoginUser from '../components/Users/LoginUser';
@@ -31,6 +36,8 @@ export default ( ) => (
     <Route path = "/empForm/new" exact component = {requireAuth(EmpFormPage)} />
     <Route path = "/login" exact component = {UserLoginPage} />
     <Route path = "/signup" exact component = {UserSignUpPage} />
+    <Route path = "/confirmation" exact component = {ConfirmationMessage} />
+    <Route path="/users/confirmation/:token=:query1" exact component={Confirmation} />
     <Route component={NotFound} />
   </Switch>
 );

@@ -9,6 +9,13 @@ class SignUpUser extends Component{
     this.props.userSignUp(values);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.signupUser.success){
+       this.props.history.push('users/confirmation');
+    }
+  }
+
+
   error_message(error){
     if( error ){    
       let children;
@@ -28,7 +35,6 @@ class SignUpUser extends Component{
       return <div className="alert alert-danger">Error: {children} </div>
     }
   }
-
 
   render(){
     const { user, loading, error,success} = this.props.signupUser;

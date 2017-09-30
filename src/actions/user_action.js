@@ -92,3 +92,33 @@ export function userSignUpFailure(err){
     payload: err
   }
 }
+
+
+export function userConfirmation(token){
+  const request = axios({
+    method: 'get',
+    url: `http://localhost:3005/v1/m_users/confirmation?confirmation_token=${token}`,
+    headers: []
+  });
+
+  return {
+    type: "USER_CONFIRMATION",
+    payload: request
+  }
+}
+
+
+export function userConfirmationSuccess(user){
+  return{
+    type: "USER_CONFIRMATION_SUCCESS",
+    payload: user
+  }
+}
+
+export function userConfirmationFailure(err){
+  return{
+    type: "USER_CONFIRMAION_FAILURE",
+    payload: err
+  }
+}
+

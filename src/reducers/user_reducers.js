@@ -1,4 +1,4 @@
-const INITIAL_STATE ={ 
+const INITIAL_STATE ={
   loginUser: {user: null, error:null, loading: false,auth_token: null,message: null,success: false},
   signupUser: {user: null, error:null, loading: false,auth_token: null,message: null,success: false}
 };
@@ -14,8 +14,8 @@ const users = (state = INITIAL_STATE, action) => {
     case "USER_LOGIN_FAILURE":
       error = action.payload || {message: action.payload.message};
       return {...state, loginUser: { user: null, error: error, loading: false,autch_token: null,message: action.payload.message,success: action.payload.success}}
-      
-    case "USER_LOGOUT": 
+
+    case "USER_LOGOUT":
       return {...state, loginUser: { user: null, error: null, loading: true,message: null,success: false}}
     case "USER_LOGOUT_SUCCESS":
       return {...state, loginUser: { user: null, error: null, loading: false,message: action.payload.message,success: action.payload.success}}
@@ -24,9 +24,9 @@ const users = (state = INITIAL_STATE, action) => {
       return {...state, loginUser: { user: null, error: error, loading: false,message: action.payload.message,success: action.payload.success}}
     case "RESET_LOGIN_USER":
       return {...state, loginUser: { user: null, error: null, loading: false,autch_token: null,message: null,success: false}}
-    
-    
-    case "USER_SIGNUP": 
+
+
+    case "USER_SIGNUP":
       return {...state, signupUser: { user: null, error: null, loading: true,autch_token: null,message: null,success: false}}
     case "USER_SIGNUP_SUCCESS":
       return {...state, signupUser: { user:  action.payload.user, error: null, loading: false,message: action.payload.message,success: action.payload.success}}
@@ -35,9 +35,18 @@ const users = (state = INITIAL_STATE, action) => {
       error = {message: action.payload.message}
       return {...state, signupUser: { user: null, error: error, loading: false,message: action.payload.message,success: action.payload.success}}
 
+
+    case "USER_CONFIRMATION":
+      return {...state, loginUser: { user: null, error: null, loading: true,autch_token: null,message: null,success: false}}
+    case "USER_CONFIRMATION_SUCCESS":
+      console.log(action.payload);
+      return {...state, loginUser: { user: action.payload.login_user, error: null, loading: false,auth_token: action.payload.auth_token,message: action.payload.message,success:  action.payload.success  }}
+
+    case "USER_CONFIRMAION_FAILURE":
+      error = action.payload || {message: action.payload.message};
+      return {...state, loginUser: { user: null, error: error, loading: false,autch_token: null,message: action.payload.message,success: action.payload.success}}
     default:
       return state
   }
 }
 export default users;
-
