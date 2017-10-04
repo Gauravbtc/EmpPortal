@@ -11,10 +11,9 @@ class SignUpUser extends Component{
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.signupUser.success){
-       this.props.history.push('users/confirmation');
+       this.props.history.push('/users/confirmation');
     }
   }
-
 
   error_message(error){
     if( error ){    

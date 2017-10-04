@@ -122,3 +122,64 @@ export function userConfirmationFailure(err){
   }
 }
 
+
+export function userForgotPassword(params){
+  const request = axios({
+    method: 'post',
+    url: 'http://localhost:3005/v1/m_users/password',
+    data: params,
+    headers: []
+
+  });
+  return {
+    type: "USER_FORGOT_PASSWORD",
+    payload: request
+  }
+}
+
+
+
+export function userForgotPasswordSuccess(user){
+  return{
+    type: "USER_FORGOT_PASSWORD_SUCCESS",
+    payload: user
+  }
+}
+
+
+
+export function userForgotPasswordFailure(err){
+  return{
+    type: "USER_FORGOT_PASSWORD_FAILURE",
+    payload: err
+  }
+}
+
+export function userPasswordNew(params){
+  const request = axios({
+    method: 'put',
+    url: 'http://localhost:3005/v1/m_users/password',
+    data: params,
+    headers: []
+
+  });
+  return {
+    type: "USER_PASSWORD_NEW",
+    payload: request
+  }
+}
+
+export function userPasswordNewSuccess(user){
+  return{
+    type: "USER_FORGOT_PASSWORD_NEW_SUCCESS",
+    payload: user
+  }
+}
+
+
+export function userPasswordNewFailure(err){
+  return{
+    type: "USER_FORGOT_PASSWORD_NEW_FAILURE",
+    payload: err
+  }
+}

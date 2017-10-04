@@ -13,16 +13,10 @@ import UserLoginPage from '../pages/user/UserLoginPage';
 import UserSignUpPage from '../pages/user/UserSignUpPage';
 import requireAuth from '../components/auth/require_auth';
 import ConfirmationMessage from '../components/users/ConfirmationMessage';
-//import Confirmation from '../components/users/Confirmation';
-
 import Confirmation from '../containers/userContainer/ConfirmationContainer';
+import ForgotPassword from '../containers/userContainer/ForgotPasswordContainer';
+import NewPassword from '../containers/userContainer/NewPasswordContainer';
 
-//import SignUpForm from '../components/users/SignUpUser';
-
-//import LoginUser from '../components/Users/LoginUser';
-//import NewEmployee from '../components/employees/NewEmployee';
-//import ShowEmployee from '../containers/Employee/ShowEmployee';
-//import ShowEmployee from '../components/employees/ShowEmployee';
 
 export default ( ) => (
   <Switch>
@@ -36,8 +30,10 @@ export default ( ) => (
     <Route path = "/empForm/new" exact component = {requireAuth(EmpFormPage)} />
     <Route path = "/login" exact component = {UserLoginPage} />
     <Route path = "/signup" exact component = {UserSignUpPage} />
-    <Route path = "/confirmation" exact component = {ConfirmationMessage} />
+    <Route path = "/users/confirmation" exact component = {ConfirmationMessage} />
     <Route path="/users/confirmation/:token=:query1" exact component={Confirmation} />
+    <Route path="/users/password/:token=:query1" exact component={NewPassword} />
+    <Route path="/users/forgotpassword" exact component={ForgotPassword} />
     <Route component={NotFound} />
   </Switch>
 );

@@ -30,7 +30,6 @@ const users = (state = INITIAL_STATE, action) => {
       return {...state, signupUser: { user: null, error: null, loading: true,autch_token: null,message: null,success: false}}
     case "USER_SIGNUP_SUCCESS":
       return {...state, signupUser: { user:  action.payload.user, error: null, loading: false,message: action.payload.message,success: action.payload.success}}
-
     case "USER_SIGNUP_FAILURE":
       error = {message: action.payload.message}
       return {...state, signupUser: { user: null, error: error, loading: false,message: action.payload.message,success: action.payload.success}}
@@ -39,13 +38,30 @@ const users = (state = INITIAL_STATE, action) => {
     case "USER_CONFIRMATION":
       return {...state, loginUser: { user: null, error: null, loading: true,autch_token: null,message: null,success: false}}
     case "USER_CONFIRMATION_SUCCESS":
-      console.log(action.payload);
       return {...state, loginUser: { user: action.payload.login_user, error: null, loading: false,auth_token: action.payload.auth_token,message: action.payload.message,success:  action.payload.success  }}
-
     case "USER_CONFIRMAION_FAILURE":
       error = action.payload || {message: action.payload.message};
       return {...state, loginUser: { user: null, error: error, loading: false,autch_token: null,message: action.payload.message,success: action.payload.success}}
-    default:
+   
+    
+    case "USER_FORGOT_PASSWORD": 
+      return {...state, loginUser: { user: null, error: null, loading: true,autch_token: null,message: null,success: false}}
+    case "USER_FORGOT_PASSWORD_SUCCESS": 
+      return {...state, loginUser: { user: action.payload.login_user, error: null, loading: false,auth_token: null,message: action.payload.message,success:  action.payload.success  }}
+    case "USER_FORGOT_PASSWORD_FAILURE":
+      error = action.payload || {message: action.payload.message};
+      return {...state, loginUser: { user: null, error: error, loading: false,autch_token: null,message: action.payload.message,success: action.payload.success}}
+     
+
+    case "USER_PASSWORD_NEW":
+      return {...state, loginUser: { user: null, error: null, loading: true,autch_token: null,message: null,success: false}}
+    case "USER_FORGOT_PASSWORD_NEW_SUCCESS":
+      return {...state, loginUser: { user: action.payload.login_user, error: null, loading: false,auth_token: action.payload.auth_token,message: action.payload.message,success:  action.payload.success  }}
+    case "USER_FORGOT_PASSWORD_NEW_FAILURE":
+       error = action.payload || {message: action.payload.message};
+       return {...state, loginUser: { user: null, error: error, loading: false,autch_token: null,message: action.payload.message,success: action.payload.success}}
+   
+      default:
       return state
   }
 }
