@@ -61,7 +61,15 @@ const users = (state = INITIAL_STATE, action) => {
        error = action.payload || {message: action.payload.message};
        return {...state, loginUser: { user: null, error: error, loading: false,autch_token: null,message: action.payload.message,success: action.payload.success}}
    
-      default:
+
+    case "AUTH_USER":
+      return {...state, loginUser: { user: null, error: null, loading: true,autch_token: null,message: null,success: false}}
+    case "AUTH_USER_SUCCESS":
+      return {...state, loginUser: { user: action.payload.login_user, error: null, loading: false,auth_token: action.payload.auth_token,message: action.payload.message,success:  action.payload.success  }}
+    case "AUTH_USER_FAILURE":
+      return {...state, loginUser: { user: action.payload.login_user, error: null, loading: false,auth_token: action.payload.auth_token,message: action.payload.message,success:  action.payload.success  }}
+    
+    default:
       return state
   }
 }

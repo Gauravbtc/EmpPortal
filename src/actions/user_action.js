@@ -183,3 +183,31 @@ export function userPasswordNewFailure(err){
     payload: err
   }
 }
+
+
+export function authUser(){
+  const request = axios({
+    method: 'get',
+    url: `http://localhost:3005/v1/login_user`,
+    headers: {'auth_token': localStorage.getItem("user")}
+  });
+  console.log(localStorage.getItem("user"));
+  return {
+    type: "AUTH_USER",
+    payload: request
+  }
+}
+
+export function authUserSuccess(user){
+  return{
+    type: "AUTH_USER_SUCCESS",
+    payload: user
+  }
+}
+
+export function authUserFailure(err){
+  return{
+    type: "AUTH_USER_FAILURE",
+    payload: err
+  }
+}
