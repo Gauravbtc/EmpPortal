@@ -4,8 +4,8 @@ import { Navbar,Nav} from 'react-bootstrap';
 import RouteNavItem from '../components/RouteNavItem';
 import '../css/Header.css';
 import { connect } from 'react-redux';
-import { userLogout, userLogoutSuccess,userLogoutFailure } from '../actions/user_action';
-import {authenticated,unauthenticated,authenticated_error} from '../actions/auth_action';
+//import { userLogout, userLogoutSuccess,userLogoutFailure } from '../actions/user_action';
+//import {authenticated,unauthenticated,authenticated_error} from '../actions/auth_action';
 import NavBar from './NavBar';
 
 class Header extends Component{

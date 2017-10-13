@@ -1,7 +1,7 @@
 import Confirmation from '../../components/users/Confirmation'
 import { connect } from 'react-redux';
 import { userConfirmation,userConfirmationSuccess,userConfirmationFailure} from '../../actions/user_action';
-import {authenticated,unauthenticated,authenticated_error} from '../../actions/auth_action';
+import {authenticated} from '../../actions/auth_action';
 
 function mapStateToProps(state, ownProps){
     return{

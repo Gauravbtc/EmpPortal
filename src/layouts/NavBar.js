@@ -1,8 +1,8 @@
 import React,{ Component } from 'react'
 import { connect } from 'react-redux';
-import {  withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { resetloginUser,userLogout,userLogoutSuccess,userLogoutFailure } from '../actions/user_action';
-import {authenticated,unauthenticated,authenticated_error} from '../actions/auth_action';
+import {unauthenticated,authenticated_error} from '../actions/auth_action';
 import {restEmployees} from '../actions/employee_action'
 import RouteNavItem from '../components/RouteNavItem';
 

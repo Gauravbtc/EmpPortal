@@ -6,7 +6,6 @@ import axios from 'axios';
       url: `http://localhost:3005/v1/users`,
       headers: {'auth_token': localStorage.getItem("user")}
     });
-    console.log(localStorage.getItem("user"));
     return {
       type: "FETCH_EMPLOYEES",
       payload: request

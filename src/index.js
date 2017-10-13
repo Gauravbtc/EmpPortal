@@ -38,10 +38,8 @@ if(user) {
       store.dispatch(authUserFailure(response.data));
     } 
   })
-  console.log(next.payload);
  }
-
-console.log("i m in index");
+ 
 ReactDOM.render(
 <Provider store={store}>
   <Router>
@@ -49,10 +47,3 @@ ReactDOM.render(
   </Router>
 </Provider>,document.getElementById('root'));
 registerServiceWorker();
-
-// function mapStateToProps(state, ownProps){
-//   return{
-//     loginUser: state.user.loginUser,
-//     params: ownProps
-//   }
-// }

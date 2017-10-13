@@ -46,7 +46,6 @@ class EditEmployee extends Component{
     }
     return(
       <div>
-        {console.log(employee.image_url)}
         <EmpForm onSubmit= {this.submit} initialValues={employee} />
       </div>
     )

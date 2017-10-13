@@ -40,7 +40,6 @@ class SignUpUser extends Component{
     if(loading) {
       return <div className="container"><h1>Logging</h1></div>
     }
-   // console.log(error.email);
     return(
       <div>
         {this.error_message(error)}

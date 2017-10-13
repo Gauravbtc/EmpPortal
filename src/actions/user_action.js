@@ -23,7 +23,6 @@ export function userLoginSuccess(user){
 
 
 export function userLoginFailure(err){
-  console.log(err)
   return{
     type: "USER_LOGIN_FAILURE",
     payload: err
@@ -191,7 +190,6 @@ export function authUser(){
     url: `http://localhost:3005/v1/login_user`,
     headers: {'auth_token': localStorage.getItem("user")}
   });
-  console.log(localStorage.getItem("user"));
   return {
     type: "AUTH_USER",
     payload: request
@@ -211,3 +209,32 @@ export function authUserFailure(err){
     payload: err
   }
 }
+
+export function fetchRole(){
+  const request = axios({
+    method: 'get',
+    url: `http://localhost:3005/v1/get_role`
+  });
+  return {
+    type: "FETCH_ROLE",
+    payload: request
+  }
+}
+
+
+export function fetchRoleSuccess(role){
+  return {
+    type: "FETCH_ROLE_SUCCESS",
+    payload: role
+  }
+}
+
+
+export function fetchRoleFailure(err){
+  return {
+    type: "FETCH_ROLE_FAILURE",
+    payload: err
+  }
+}
+
+

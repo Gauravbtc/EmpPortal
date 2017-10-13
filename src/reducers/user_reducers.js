@@ -1,6 +1,7 @@
 const INITIAL_STATE ={
   loginUser: {user: null, error:null, loading: false,auth_token: null,message: null,success: false},
-  signupUser: {user: null, error:null, loading: false,auth_token: null,message: null,success: false}
+  signupUser: {user: null, error:null, loading: false,auth_token: null,message: null,success: false},
+  role: {role: null,error:null, loading: false,message: null,success: false }
 };
 
 const users = (state = INITIAL_STATE, action) => {
@@ -69,7 +70,16 @@ const users = (state = INITIAL_STATE, action) => {
     case "AUTH_USER_FAILURE":
       return {...state, loginUser: { user: action.payload.login_user, error: null, loading: false,auth_token: action.payload.auth_token,message: action.payload.message,success:  action.payload.success  }}
     
-    default:
+
+    case "FETCH_ROLE":
+      return {...state, role: { role: null, error: null, loading: true,message: null,success: false}}
+    case "FETCH_ROLE_SUCCESS":
+      return {...state, role: { role: action.payload.role, error: null, loading: false,message: action.payload.message,success: action.payload.success}}
+    case "FETCH_ROLE_FAILURE":
+      error = action.payload || {message: action.payload.message};
+      return {...state, loginUser: { role: null, error: error, loading: false,message: action.payload.message,success: action.payload.success}}
+    
+      default:
       return state
   }
 }

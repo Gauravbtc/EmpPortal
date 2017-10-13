@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch ,Redirect} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from '../containers/Home';
 import NotFound from '../containers/NotFound';
 import About from '../containers/About';
@@ -11,7 +11,7 @@ import EditEmployeePage from '../pages/employee/EditEmployeePage';
 import EmpFormPage from '../pages/employee/EmpFormPage';
 import UserLoginPage from '../pages/user/UserLoginPage';
 import UserSignUpPage from '../pages/user/UserSignUpPage';
-import requireAuth from '../components/auth/require_auth';
+import PrivateRoute from '../components/auth/require_auth';
 import ConfirmationMessage from '../components/users/ConfirmationMessage';
 import Confirmation from '../containers/userContainer/ConfirmationContainer';
 import ForgotPassword from '../containers/userContainer/ForgotPasswordContainer';
@@ -23,11 +23,11 @@ export default ( ) => (
     <Route path= "/" exact component={Home} />
     <Route path= "/contact" exact component={Contact} />
     <Route path= "/about" exact component={About} />
-    <Route path="/employee" exact component= {requireAuth(EmployeeIndex)}/>
-    <Route path = "/employee/show/:id" exact component = {requireAuth(ShowEmployee)} />
-    <Route path = "/employee/new" exact component = {requireAuth(NewEmployeePage)} />
-    <Route path = "/employee/:id/edit" exact component = {requireAuth(EditEmployeePage)} />
-    <Route path = "/empForm/new" exact component = {requireAuth(EmpFormPage)} />
+    <PrivateRoute path="/employee" exact component= {EmployeeIndex}/>
+    <PrivateRoute path = "/employee/show/:id" exact component= {ShowEmployee} />
+    <PrivateRoute path = "/employee/new" exact component = {NewEmployeePage} />
+    <PrivateRoute path = "/employee/:id/edit" exact component = {EditEmployeePage} />
+    <PrivateRoute path = "/empForm/new" exact component = {EmpFormPage} />
     <Route path = "/login" exact component = {UserLoginPage} />
     <Route path = "/signup" exact component = {UserSignUpPage} />
     <Route path = "/users/confirmation" exact component = {ConfirmationMessage} />

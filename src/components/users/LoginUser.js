@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom'
 class LoginUser extends Component{
 
   submit = (values) => {
-   //console.log(values);
    this.props.userLogin(values);
   }
 

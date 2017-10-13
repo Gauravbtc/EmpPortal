@@ -1,30 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import {Route, Redirect} from 'react-router-dom';
 
-export default function (ComposedComponent) {
-  class Authentication extends Component {
-    componentWillMount() {
-      if (!this.props.authenticated) {     
-        this.props.history.push('/login');
+const PrivateRoute = ({ component: ComposedComponent, ...rest}) => {
+
+  // redirect if not authenticated; otherwise, return the component imputted into <PrivateRoute />
+  class Authentication extends Component{
+
+    handleRender(props) {
+      if(!this.props.authenticated){
+        return <Redirect to={{
+          pathname: '/login',
+          state: {
+            from: props.location,
+            message: 'You need to sign in'
+          }
+        }} />
+      } else {
+        return <ComposedComponent {...props} />
       }
     }
-  
-    componentWillUpdate(nextProps) {
-      if (!nextProps.authenticated) {
-        this.props.history.push('/login');
-      }
+
+    render(){
+      return(
+          <Route {...rest} render={this.handleRender.bind(this)} />
+      )
     }
+  } 
 
-
-    render() {
-      return <ComposedComponent  {...this.props} />;
+  const mapStateToProps = (state, ownProps) => {
+    return{
+      authenticated: localStorage.getItem('user') ? true : false
     }
   }
 
-  function mapStateToProps(state) {
-    return { authenticated: state.auth.authenticate };
-  }
-
-  return connect(mapStateToProps)(Authentication);
+  const AuthenticationContainer = connect(mapStateToProps)(Authentication)
+  return <AuthenticationContainer/>
 }
+
+export default PrivateRoute;

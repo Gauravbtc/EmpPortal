@@ -76,7 +76,6 @@ class EmpForm extends Component{
   }
   render(){
     const { handleSubmit,pristine, reset, submitting } = this.props
-    console.log("gaurav" +this.props.initialValues);
     const imgsrc = this.state.imgSrc
     return(
       <div>
@@ -106,7 +105,16 @@ class EmpForm extends Component{
               <label htmlFor="email">Email</label>
               <Field name="email" component={renderField} type="email"  />
             </div>
-
+            
+            <div className="form-group">
+            <label htmlFor="User type">Select User type</label>
+              <Field component="select" name="user_type" className="form-control">
+                <option></option>
+                <option value="#ff000">Red</option>
+                <option value="#00ff00">Green</option>
+                <option value="#0000ff">Blue</option>
+            </Field>
+            </div>
             <div className="form-group">
               <label>Files</label>
               <Field name="photo" component={UploadFile} onChange={this.ImagePreview.bind(this)} />
@@ -141,7 +149,6 @@ export default EmpForm;
 class RadioGroup extends Component {
     render() {
         const { input, meta, options } = this.props
-        console.log(meta);
         const hasError = meta.touched && meta.error;
         return (
             <div>

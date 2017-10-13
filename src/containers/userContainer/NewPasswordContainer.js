@@ -1,7 +1,7 @@
 import NewPassword from '../../components/users/NewPassword'
 import { connect } from 'react-redux';
 import { userPasswordNew,userPasswordNewSuccess,userPasswordNewFailure} from '../../actions/user_action';
-import {authenticated,unauthenticated,authenticated_error} from '../../actions/auth_action';
+import {authenticated} from '../../actions/auth_action';
 
 function mapStateToProps(state, ownProps){
     return{

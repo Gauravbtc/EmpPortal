@@ -3,8 +3,6 @@ import  EmpForm from '../../components/employees/EmpForm';
 
 class EmpFormPage extends Component{
   submit = (values) => {
-    //console.log(values);
-    console.log(values);
   }
 
   constructor(props) {

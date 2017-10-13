@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom'
 
 class NewPassword extends Component{
   submit = (values) => {
-    console.log(values);
     this.props.userPasswordNew(values);
   }
 
@@ -24,7 +23,6 @@ class NewPassword extends Component{
 
   render(){
     const { user, loading, error,success} = this.props.loginUser;
-    console.log(this.props.match.params.query1);
     if(loading) {
       return <div className="container"><h1>Logging</h1></div>
     }
