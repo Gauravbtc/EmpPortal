@@ -54,7 +54,7 @@ class EmpForm extends Component{
     super(props);
     var src = this.props.initialValues? this.props.initialValues.user_photo : "";
     this.state = {
-      imgSrc: src,
+      imgSrc: src
     }
   }
 
@@ -74,9 +74,18 @@ class EmpForm extends Component{
       })
     }.bind(this);
   }
+
+  userRole(){
+    if(this.props.user_role){
+    const listItems = this.props.user_role.map((role) =>
+     <option key = {role.id } value={role.id}>{role.name}</option>
+    );
+    return listItems;
+  }}
   render(){
     const { handleSubmit,pristine, reset, submitting } = this.props
     const imgsrc = this.state.imgSrc
+    const role = this.state.userRoles
     return(
       <div>
       <div className="panel panel-default">
@@ -108,12 +117,9 @@ class EmpForm extends Component{
             
             <div className="form-group">
             <label htmlFor="User type">Select User type</label>
-              <Field component="select" name="user_type" className="form-control">
-                <option></option>
-                <option value="#ff000">Red</option>
-                <option value="#00ff00">Green</option>
-                <option value="#0000ff">Blue</option>
-            </Field>
+            <Field component="select" name="role_id" className="form-control"  >
+              {this.userRole()}
+              </Field>
             </div>
             <div className="form-group">
               <label>Files</label>

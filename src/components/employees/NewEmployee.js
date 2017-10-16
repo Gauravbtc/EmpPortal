@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import EmpForm from './EmpForm';
 class NewEmployee extends Component {
-
   submit = (values) => {
     let formData = new FormData();
     for(const key in values){
@@ -21,8 +20,15 @@ class NewEmployee extends Component {
      }
    }
   
+  componentWillMount(){
+    this.props.fetchRole()
+  }
+
+  
   render(){
     const { employee, loading, error,success} = this.props.newEmployee;
+    const  role  = this.props.userRole;
+    
     if(loading) {
       return <div className="container"><h1>Employees</h1><h3>Creating...</h3></div>
     } else if(error) {
@@ -30,7 +36,8 @@ class NewEmployee extends Component {
     }
     return(
       <div>
-        {this.props.loginUser.user && <EmpForm onSubmit= {this.submit} m_user_id = {this.props.loginUser.user.id} />}
+        {this.props.loginUser.user && <EmpForm onSubmit= {this.submit} m_user_id = {this.props.loginUser.user.id} user_role = {role} /> }
+        
       </div>
     );
   }

@@ -30,13 +30,18 @@ class EditEmployee extends Component{
      }
    }
 
-   componentWillUnmount(){
+  componentWillUnmount(){
     this.props.resetMe();
+  }
+
+  componentWillMount(){
+    this.props.fetchRole()
   }
 
 
   render(){
     const { employee, error, loading } = this.props.editEmployee;
+    const  role  = this.props.userRole;    
     if(loading){
       return <div className="container"><h1>Employee</h1><h3>Loading...</h3></div>
     }else if(error){
@@ -46,7 +51,7 @@ class EditEmployee extends Component{
     }
     return(
       <div>
-        <EmpForm onSubmit= {this.submit} initialValues={employee} />
+        <EmpForm onSubmit= {this.submit} initialValues={employee}  user_role = {role}/>
       </div>
     )
   }
