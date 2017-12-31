@@ -16,7 +16,7 @@ import ConfirmationMessage from '../components/users/ConfirmationMessage';
 import Confirmation from '../containers/userContainer/ConfirmationContainer';
 import ForgotPassword from '../containers/userContainer/ForgotPasswordContainer';
 import NewPassword from '../containers/userContainer/NewPasswordContainer';
-
+import EmpImport from '../containers/employeesContainer/EmployeeImportContainer';
 
 export default ( ) => (
   <Switch>
@@ -26,8 +26,9 @@ export default ( ) => (
     <PrivateRoute path="/employee" exact component= {EmployeeIndex}/>
     <PrivateRoute path = "/employee/show/:id" exact component= {ShowEmployee} />
     <PrivateRoute path = "/employee/new" exact component = {NewEmployeePage} />
-    <PrivateRoute path = "/employee/:id/edit" exact component = {EditEmployeePage} />
     <PrivateRoute path = "/empForm/new" exact component = {EmpFormPage} />
+    <PrivateRoute path = "/employee/import" exact component = {EmpImport} />    
+    <PrivateRoute path = "/employee/:id/edit" exact component = {EditEmployeePage} />
     <Route path = "/login" exact component = {UserLoginPage} />
     <Route path = "/signup" exact component = {UserSignUpPage} />
     <Route path = "/users/confirmation" exact component = {ConfirmationMessage} />

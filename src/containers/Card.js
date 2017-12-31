@@ -21,7 +21,7 @@ class Card extends Component{
             <div className="card-block">
               <h4 className="card-title">Products</h4>
               <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <Link to="/upload" className="btn btn-primary">Employee</Link>
+              <Link to="/employee/import" className="btn btn-primary">Employee</Link>
             </div>
             </div>
           </div>

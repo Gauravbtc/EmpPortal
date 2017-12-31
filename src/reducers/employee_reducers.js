@@ -2,7 +2,8 @@ const INITIAL_STATE = { employeeList: {employees: [], error:null, loading: false
 							newEmployee: {employee:null, error: null, loading: false,success: false},
               showEmployee: {employee: null,error: null,loading: false},
 							updateEmp: {employee:null, error: null, loading: false, success: false},
-							deleteEmp: {employee: null,error: null,loading: false,success: false}
+							deleteEmp: {employee: null,error: null,loading: false,success: false},
+							importEmp: {employee_created: null,employeee_erros: null,error: null,loading: false,success: false}
 						};
 
 const employee = (state = INITIAL_STATE, action) => {
@@ -57,7 +58,13 @@ const employee = (state = INITIAL_STATE, action) => {
 		case 'RESET_DELETE_EMPLOYEE':
 			return {employeeList: { employees: action.employees, error: null, loading: false}}
 
-			
+		case 'IMPORT_EMPLOYEE':
+			return {...state,importEmp: {employee_created: null,employeee_erros: null,error: null,loading: false,success: false}}
+		case 'IMPORT_EMPLOYEE_SUCESSS':
+			return {...state,importEmp: {employee_created: action.payload.users_created,employeee_erros: action.payload.users_errors,error: null,loading: false,success: true}}
+		case 'IMPORT_EMPLOYEE_FAILURE':	
+			error = action.payload || {message: action.payload.error};
+			 return {...state, importEmp: { employee_created: null ,error: error , loading: false,success: false,employeee_erros: null}}
     default:
       return state
 		}

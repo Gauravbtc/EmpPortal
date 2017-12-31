@@ -158,6 +158,7 @@ export function deleteEmployeeSuccess(id,deletedEmployee,employeesList){
     employess: employeesList
   }
 }
+
 export function deleteEmployeeFailure(err){
   return{
     type: 'DELETE_EMPLOYEE_FAILURE',
@@ -169,5 +170,35 @@ export function resetDeleteEmployee(employess){
   return({
     type: "RESET_DELETE_EMPLOYEE",
     payload: employess
+  })
+}
+
+
+export function importEmployee(file){
+  const request = axios({
+    method: 'post',
+    url: `http://localhost:3005/v1/users/user_import`,
+    headers: {'auth_token': localStorage.getItem("user")},
+    data: file
+  });
+   
+  console.log(request);
+  return({
+    type: "IMPORT_EMPLOYEE",
+    payload: request
+  })
+}
+
+export function importEmployeeSucess(data){
+  return({
+    type: "IMPORT_EMPLOYEE_SUCESSS",
+    payload: data
+  })
+}
+
+export function importEmployeeFailure(err){
+  return({
+    type: "IMPORT_EMPLOYEE_FAILURE",
+    payload: err
   })
 }
